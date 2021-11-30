@@ -13,7 +13,7 @@ public final class ArrayBag<T> implements BagInterface<T> {
 
     /** Creates an empty bag whose initial capacity is 25. */
     public ArrayBag() {
-        this(DEFAULT_CAPACITY);
+        this(DEFAULT_CAPACITY); 
     } // end default constructor
 
     /**
