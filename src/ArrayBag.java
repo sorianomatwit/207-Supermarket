@@ -2,7 +2,7 @@
  * A class of bags whose entries are stored in a fixed-size array.
  */
 
-public final class ArrayBag<T> implements BagInterface<T> { 
+public final class ArrayBag<T> implements BagInterface<T> {  
 
     private final T[] bag;
     private int numberOfEntries;
