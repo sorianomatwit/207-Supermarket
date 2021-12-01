@@ -1,3 +1,4 @@
+package dsApp;
 public class ProjectSort {
 
 	public static void sortIncreasing(int[] a, int n)
