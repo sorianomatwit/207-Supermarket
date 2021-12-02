@@ -14,11 +14,13 @@ import java.io.IOException;
 
 import java.util.ArrayList;
 
+import javafx.collections.ObservableList;
+
 public class Storage
 {
 	
-	private final String excelFile_location;
-	private ArrayList<ShoppingItem> items_arraylist;
+	private final static String excelFile_location = "data/Grocery_Items.xls";;
+	private static ArrayList<ShoppingItem> items_arraylist;
 	
 	
 	/**
@@ -26,18 +28,11 @@ public class Storage
 	 */
 	public Storage()
 	{
-		this.excelFile_location = "data/Grocery_Items.xls";
-		setup();
 	}
 	
-	public Storage(String file_name)
-	{
-		this.excelFile_location = file_name;
-		setup();
-		
-	}
 	
-	private void setup()
+	
+	public static void setup(ObservableList<String> viewable)
 	{
 		items_arraylist = new ArrayList<>();
 		Workbook workbook = null;
@@ -71,6 +66,9 @@ public class Storage
             }//if
 
         }//finally
+		for(ShoppingItem g: items_arraylist) {
+			viewable.add(g.getName());
+		}
 	}//setup
 
 	public ShoppingItem[] getArray()

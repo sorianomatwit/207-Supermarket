@@ -1,5 +1,6 @@
 package application;
 
+import dsApp.Storage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -59,7 +60,8 @@ public class mainController {
 
     @FXML
     private Label totalPriceView;
-
+    
+    
     @FXML
     void NextImgL(MouseEvent event) {
 
@@ -69,5 +71,9 @@ public class mainController {
     void NextImgR(MouseEvent event) {
 
     }
-
+    public void initialize() {
+    	Storage.setup(items);
+    	storeList.setItems(items);
+    	
+    }
 }
