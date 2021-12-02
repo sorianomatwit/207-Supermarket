@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
@@ -14,6 +15,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 public class mainController {
+
+    @FXML
+    private ListView<CheckBox> FilterView;
 
     @FXML
     private Button addToCart;
@@ -26,9 +30,6 @@ public class mainController {
 
     @FXML
     private Tab cartTab;
-
-    @FXML
-    private ListView<?> filters;
 
     @FXML
     private Label itemDescription;
@@ -56,12 +57,10 @@ public class mainController {
 
     @FXML
     private ListView<String> storeList;
-    private ObservableList<String> items = FXCollections.observableArrayList();
 
     @FXML
     private Label totalPriceView;
-    
-    
+
     @FXML
     void NextImgL(MouseEvent event) {
 
@@ -71,9 +70,15 @@ public class mainController {
     void NextImgR(MouseEvent event) {
 
     }
+  //none fxml stuff
+    //OL for filters
+    private ObservableList<CheckBox> filters = FXCollections.observableArrayList();
+    //oL for list
+    private ObservableList<String> items = FXCollections.observableArrayList();
     public void initialize() {
+    	filters.add(new CheckBox("filter 1"));
+    	this.FilterView.setItems(filters);
     	Storage.setup(items);
     	storeList.setItems(items);
-    	
     }
 }

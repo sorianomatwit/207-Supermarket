@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
 
-public class Storage
+public class Storage 
 {
 	
 	private final static String excelFile_location = "data/Grocery_Items.xls";;

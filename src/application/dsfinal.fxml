@@ -69,7 +69,7 @@
                                  </content>
                               </ScrollPane>
                               <Label layoutX="27.0" layoutY="62.0" prefHeight="17.0" prefWidth="66.0" text="Filters" />
-                              <ListView fx:id="filters" layoutX="14.0" layoutY="87.0" prefHeight="296.0" prefWidth="84.0" />
+                              <ListView fx:id="FilterView" layoutX="14.0" layoutY="87.0" prefHeight="296.0" prefWidth="84.0" />
                            </children>
                         </Pane>
                         <Pane fx:id="itemField" layoutX="332.0" layoutY="75.0" prefHeight="398.0" prefWidth="446.0">
