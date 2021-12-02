@@ -4,8 +4,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
 public class mainController {
 
@@ -22,22 +25,46 @@ public class mainController {
     private Tab cartTab;
 
     @FXML
+    private ListView<?> filters;
+
+    @FXML
     private Label itemDescription;
 
     @FXML
     private Label itemDescription1;
 
     @FXML
-    private TextField itemSearch;
+    private Pane itemField;
 
     @FXML
-    private ListView<?> itemsList;
+    private Pane itemField1;
+
+    @FXML
+    private ScrollPane itemList;
+
+    @FXML
+    private TextField itemSearch;
 
     @FXML
     private Tab shopTab;
 
     @FXML
-    private Label totalProce;
+    private Pane storeField;
+
+    @FXML
+    private ListView<?> storeList;
+
+    @FXML
+    private Label totalPriceView;
+
+    @FXML
+    void NextImgL(MouseEvent event) {
+    	
+    }
+
+    @FXML
+    void NextImgR(MouseEvent event) {
+
+    }
 
 }
-
