@@ -3,12 +3,10 @@ package dsApp;
 
 import java.io.File;
 
-import org.apache.poi.ss.usermodel.Cell;
-
 public class ShoppingItem
 {
 	
-	private Cell picture;
+	private File picture;
 	
 	private String name;
 	private Double price;
@@ -17,7 +15,7 @@ public class ShoppingItem
 	
 	
 	
-	public ShoppingItem(Cell picture, String name, Double price, String category, String description)
+	public ShoppingItem(File picture, String name, Double price, String category, String description)
 	{
 		this.picture = picture;
 		this.name = name;
@@ -35,12 +33,9 @@ public class ShoppingItem
 		this.description = description;
 	}
 	
-	
 	public File getPic()
 	{
-		//return file in picture cell
-		
-		return null;
+		return picture;
 	}
 	
 	public String getName()

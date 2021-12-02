@@ -19,5 +19,6 @@
 	<classpathentry kind="lib" path="C:/Program Files/Java/ExcelJars/poi-ooxml-3.17.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/ExcelJars/poi-ooxml-schemas-3.17.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/ExcelJars/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jxl-2.6.jar/jxl-2.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
