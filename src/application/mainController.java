@@ -1,5 +1,7 @@
 package application;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -52,14 +54,15 @@ public class mainController {
     private Pane storeField;
 
     @FXML
-    private ListView<?> storeList;
+    private ListView<String> storeList;
+    private ObservableList<String> items = FXCollections.observableArrayList();
 
     @FXML
     private Label totalPriceView;
 
     @FXML
     void NextImgL(MouseEvent event) {
-    	
+
     }
 
     @FXML
