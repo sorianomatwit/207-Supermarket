@@ -47,4 +47,9 @@ public class CartItem extends ShoppingItem{
 		return false;
 		
 	}
+	
+//	public static Double calcTotal(ObservableList<CartItem>() groceries) {
+//		Double total = 0;
+//		return total;
+//	}
 }
