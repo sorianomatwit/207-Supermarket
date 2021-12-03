@@ -1,5 +1,7 @@
 package dsApp;
 
+import javafx.collections.ObservableList;
+
 public class CartItem extends ShoppingItem{
 	
 	private int amtOfitem = 1;
@@ -11,16 +13,22 @@ public class CartItem extends ShoppingItem{
 		amtOfitem = amt;
 	}
 	
+	
 	public CartItem(ShoppingItem g,int amt) {
 		super(g.getName(),g.getPrice(),g.getCategory(),g.getDescription());
 		initialPrice = this.price;
 		this.price = price*amt;
 		amtOfitem = amt;
 	}
-	
+	/**
+	 * add 1 to item size
+	 */
 	public void addItem() {
 		amtOfitem++;
 	}
+	/**
+	 * subtract 1 from item size
+	 */
 	public void subItem() {
 		amtOfitem--;
 	}
@@ -37,19 +45,34 @@ public class CartItem extends ShoppingItem{
 		return name;
 	}
 	
+	/** 
+	 *  change the amt of this cart item
+	 * @param i
+	 */
 	public void setAmt(int i) {
 		amtOfitem = 1;
 	}
-	public boolean equals(CartItem c) {
+	/**
+	 * 
+	 * @param ShoppingItem 
+	 * @return true if that are the same type of shopping item
+	 */
+	public boolean equals(ShoppingItem c) {
 		if(this.name.equals(c.getName())) {
 			return true;
 		}
 		return false;
-		
 	}
-	
-//	public static Double calcTotal(ObservableList<CartItem>() groceries) {
-//		Double total = 0;
-//		return total;
-//	}
+	/**
+	 * 
+	 * @param list of cartitems groceries 
+	 * @return total price
+	 */
+	public static Double calcTotal(ObservableList<CartItem> groceries) {
+		Double total = 0.0;
+		for(CartItem g: groceries) {
+			total += g.getPrice();
+		}
+		return total;
+	}
 }

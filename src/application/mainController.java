@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import dsApp.CartItem;
 import dsApp.FilterController;
 import dsApp.ProjectSort;
+import dsApp.ShoppingItem;
 import dsApp.Storage;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -100,7 +101,20 @@ public class mainController {
 
     }
 
+    @FXML
+    void ShopClicked(MouseEvent event) {
+    	String sel = storeList.getSelectionModel().getSelectedItem();
+    	int indexOf = storeList.getItems().indexOf(sel);
+    	ShoppingItem selI = Storage.getItemFromString(sel);
+    	//itemDescription.setText();
+    }
+    
 
+    @FXML
+    void CartClicked(MouseEvent event) {
+
+    }
+    
     @FXML
     void questionHitYes(ActionEvent event) {
     	String sel = cartList.getSelectionModel().getSelectedItem();
@@ -142,7 +156,7 @@ public class mainController {
     	String sel = storeList.getSelectionModel().getSelectedItem();
     	int indexOf = storeList.getItems().indexOf(sel);
     	if(indexOf >= 0) {
-	    	CartItem newItem = new CartItem(Storage.getItemIndex(sel),1);
+	    	CartItem newItem = new CartItem(Storage.getItemFromString(sel),1);
 	    	boolean isThere = false;
 	    	for(CartItem c: cartItems) {
 	    		if(c.equals(newItem)) {
@@ -163,6 +177,7 @@ public class mainController {
 	    	cartList.setItems(cart);
     	}
     	
+    	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
     }
 
     @FXML

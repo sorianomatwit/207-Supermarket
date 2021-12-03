@@ -32,6 +32,9 @@ public class Storage
 	{
 	}
 	
+	/**
+	 * gather all info of the shoppingitems form excel
+	 */
 	public static void initialize() {
 		items_arraylist = FXCollections.observableArrayList();
 		Workbook workbook = null;
@@ -69,6 +72,10 @@ public class Storage
         }//finally
 	}
 	
+	/**
+	 * add all names of shopping item to a list of strings
+	 * @param viewable
+	 */
 	public static void setup(ObservableList<String> viewable)
 	{
 		initialize();
@@ -76,11 +83,20 @@ public class Storage
 			viewable.add(g.getName());
 		}
 	}//setup
+	/**
+	 * 
+	 * @return the list of ShoppingItem
+	 */
 	public static ObservableList<ShoppingItem> getAllShoppingItems() {
 		initialize();
 		return items_arraylist;
 	}
-	public static ShoppingItem getItemIndex(String Item) {
+	/**
+	 * 
+	 * @param Item name of the grocery item
+	 * @return the Shopping item correlation to the name
+	 */
+	public static ShoppingItem getItemFromString(String Item) {
 		initialize();
 		//System.out.println(items_arraylist);
 		for(ShoppingItem g: items_arraylist) {
@@ -93,6 +109,10 @@ public class Storage
 		return null;
 		
 	}
+	/**
+	 * 
+	 * @return the shoppingItem in array form
+	 */
 	public static ShoppingItem[] getArray()
 	{
 		initialize();
@@ -104,6 +124,5 @@ public class Storage
 		}
 		
 		return items;
-		
 	}
 }//class
