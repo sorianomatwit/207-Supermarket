@@ -1,4 +1,8 @@
 package dsApp;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class ProjectSort {
 
 	public static void sortIncreasing(int[] a, int n)
@@ -110,27 +114,17 @@ public class ProjectSort {
 		}
 	}
 	
-	public static String[] searchFunc(String a, String[] s) {
+	public static ObservableList<String> searchFunc(String a, ObservableList<String> items) {
 		
-		String[] f = new String[s.length];
-		int j = 0;
+		ObservableList<String> n = FXCollections.observableArrayList();
 		
-		for(int i = 0; i < s.length; i++) {
-			if(s[i].contains(a)) {
-				f[j] = s[i];
-				j++;
+		a = a.toLowerCase();
+		
+		for(String g : items) {
+			if(g.toLowerCase().contains(a)) {
+				n.add(g);
 			}
 		}
-		
-		String[] l = new String[j];
-		
-		for(int i = 0; i < s.length; i++) {
-			if(f[i] != null) {
-				l[i] = f[i];
-			}
-		}
-		
-		return l;
+		return n;
 	}
-
 }
