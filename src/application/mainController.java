@@ -155,10 +155,10 @@ public class mainController {
     	int indexOf = cartList.getItems().indexOf(sel);
     	if(indexOf >= 0) {
     		questionBar.setVisible(true);
-    	}
+    	}  
     }
 
-    @FXML
+    @FXML 
     void toCart(ActionEvent  event) {
     	
     	String sel = storeList.getSelectionModel().getSelectedItem();
