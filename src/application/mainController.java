@@ -1,5 +1,6 @@
 package application;
 
+import dsApp.FilterController;
 import dsApp.Storage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -44,9 +45,6 @@ public class mainController {
     private Pane itemField1;
 
     @FXML
-    private ScrollPane itemList;
-
-    @FXML
     private TextField itemSearch;
 
     @FXML
@@ -76,7 +74,7 @@ public class mainController {
     //oL for list
     private ObservableList<String> items = FXCollections.observableArrayList();
     public void initialize() {
-    	filters.add(new CheckBox("filter 1"));
+    	FilterController.setup(filters);
     	this.FilterView.setItems(filters);
     	Storage.setup(items);
     	storeList.setItems(items);
