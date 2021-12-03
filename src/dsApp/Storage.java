@@ -1,6 +1,7 @@
 package dsApp;
 
 import jxl.Cell;
+import jxl.CellType;
 import jxl.Image;
 import jxl.NumberCell;
 import jxl.Sheet;
@@ -24,7 +25,7 @@ public class Storage
 	
 	
 	/**
-	 * Default constructor to setup a storage object using the default file name of our projects .xsl file name
+	 * Default constructor
 	 */
 	public Storage()
 	{
@@ -41,20 +42,29 @@ public class Storage
             workbook = Workbook.getWorkbook(new File(excelFile_location));
 
             Sheet sheet = workbook.getSheet(0);
-            
-            for(int r = 0; r < 5;r++)
+            int r = 0;
+            //loops through each row in the sheet until a row is empty(allows us to expand the excel sheet as much as we want)
+            while(!(sheet.getCell(1, r).getType().equals(CellType.EMPTY)))
             {
-            	
-            	Image image = sheet.getDrawing(r);
-				File picture = image.getImageFile();
+            	ArrayList<File> pictures = new ArrayList<>();
+            	//the way I currently am trying to get multiple images isn't working so for know I will try a single image in an ArrayList
+            	//Image image = sheet.getDrawing(r);
+        		//pictures.add(image.getImageFile());
+            	int y = r;
+            	while(sheet.getDrawing(y).getRow() == r)
+            	{
+            		Image image = sheet.getDrawing(r);
+            		pictures.add(image.getImageFile());
+            		y++;
+            	}
 				String name = sheet.getCell(1, r).getContents();
 				Double price = Double.parseDouble(sheet.getCell(2, r).getContents());
 				String category = sheet.getCell(3, r).getContents();
 				String description = sheet.getCell(4, r).getContents();
             	
-            	items_arraylist.add(new ShoppingItem(picture, name, price, category, description));
-            	
-            }//1st for loop
+            	items_arraylist.add(new ShoppingItem(pictures, name, price, category, description));
+            	r++;
+            }//while loop
         } catch (IOException e) {
             e.printStackTrace();
         } catch (BiffException e) {
@@ -70,7 +80,11 @@ public class Storage
 			viewable.add(g.getName());
 		}
 	}//setup
-
+	
+	/**
+	 * 
+	 * @return array of all the ShoppingItem objects 
+	 */
 	public ShoppingItem[] getArray()
 	{
 		ShoppingItem[] items = new ShoppingItem[items_arraylist.size()];
@@ -83,4 +97,6 @@ public class Storage
 		return items;
 		
 	}
+	
+	
 }//class
