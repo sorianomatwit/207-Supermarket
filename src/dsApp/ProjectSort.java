@@ -109,4 +109,28 @@ public class ProjectSort {
 			swap(a, index, indexOfNextSmallest);
 		}
 	}
+	
+	public static String[] searchFunc(String a, String[] s) {
+		
+		String[] f = new String[s.length];
+		int j = 0;
+		
+		for(int i = 0; i < s.length; i++) {
+			if(s[i].contains(a)) {
+				f[j] = s[i];
+				j++;
+			}
+		}
+		
+		String[] l = new String[j];
+		
+		for(int i = 0; i < s.length; i++) {
+			if(f[i] != null) {
+				l[i] = f[i];
+			}
+		}
+		
+		return l;
+	}
+
 }

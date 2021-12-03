@@ -60,6 +60,19 @@ public class mainController {
     private Label totalPriceView;
 
     @FXML
+    private Button searchButton;
+
+
+
+    @FXML
+    void pressSearch(ActionEvent event) {
+    	for(int i = 0; i < searchFunc(itemSearch.getText(),f).length; i++) {
+    		System.out.println(searchFunc(itemSearch.getText(),f)[i]);
+    	}
+    }
+    
+    
+    @FXML
     void NextImgL(MouseEvent event) {
 
     }
