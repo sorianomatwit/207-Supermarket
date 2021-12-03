@@ -2,6 +2,7 @@ package dsApp;
 
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.CheckBox;
 
@@ -21,6 +22,14 @@ public class FilterController{
 		for(int i = 0; i < Attributes.length;i++) {
 			viewable.add(new CheckBox(Attributes[i]));
 		}
+	}
+	
+	public static void applyFilter(String filter, ObservableList<String> Items) {
+		switch(filter.toLowerCase()) {
+			case Attributes[0]:
+		break;
+		}
+		FXCollections.sort(Items,);
 	}
 	
 	public static ArrayList<CheckBox> checkFilters(ObservableList<CheckBox> viewable) {

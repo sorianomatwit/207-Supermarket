@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+
 import dsApp.FilterController;
 import dsApp.ProjectSort;
 import dsApp.Storage;
@@ -78,7 +80,7 @@ public class mainController {
 
     @FXML
     void Filterclicked(MouseEvent event) {
-
+    	ArrayList<CheckBox> checkedBoxes = FilterController.checkFilters(filters);
     }
     
     @FXML
