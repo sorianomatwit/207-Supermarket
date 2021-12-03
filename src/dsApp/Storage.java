@@ -1,6 +1,7 @@
 package dsApp;
 
 import jxl.Cell;
+import jxl.CellType;
 import jxl.Image;
 import jxl.NumberCell;
 import jxl.Sheet;
@@ -39,8 +40,8 @@ public class Storage
             workbook = Workbook.getWorkbook(new File(excelFile_location));
 
             Sheet sheet = workbook.getSheet(0);
-            
-            for(int r = 0; r < 5;r++)
+            int r = 0;
+            while(!(sheet.getCell(1, r)).getType().equals(CellType.EMPTY))
             {
             	
             	Image image = sheet.getDrawing(r);
@@ -51,6 +52,8 @@ public class Storage
 				String description = sheet.getCell(4, r).getContents();
             	
             	items_arraylist.add(new ShoppingItem(picture, name, price, category, description));
+            	
+            	r++;
             	
             }//1st for loop
         } catch (IOException e) {
