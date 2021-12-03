@@ -68,7 +68,7 @@
                               <Button fx:id="searchButton" layoutX="219.0" layoutY="15.0" mnemonicParsing="false" onAction="#pressSearch" prefHeight="25.0" prefWidth="73.0" text="Search" />
                            </children>
                         </Pane>
-                        <Pane fx:id="itemField" layoutX="332.0" layoutY="75.0" prefHeight="398.0" prefWidth="446.0">
+                        <Pane fx:id="itemField" layoutX="359.0" layoutY="75.0" prefHeight="398.0" prefWidth="419.0" visible="false">
                            <children>
                               <Button fx:id="addToCart" layoutX="141.0" layoutY="347.0" mnemonicParsing="false" onAction="#toCart" prefHeight="37.0" prefWidth="164.0" text="Add to Cart" />
                               <BorderPane fx:id="imgViewer" layoutX="94.0" layoutY="18.0" prefHeight="178.0" prefWidth="259.0">
@@ -149,7 +149,7 @@
                               </Pane>
                            </children>
                         </Pane>
-                        <Pane fx:id="itemField1" layoutX="338.0" layoutY="96.0" prefHeight="398.0" prefWidth="446.0">
+                        <Pane fx:id="itemField1" layoutX="338.0" layoutY="96.0" prefHeight="398.0" prefWidth="446.0" visible="false">
                            <children>
                               <BorderPane layoutX="94.0" layoutY="18.0" prefHeight="178.0" prefWidth="259.0">
                                  <left>

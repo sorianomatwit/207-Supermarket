@@ -103,6 +103,7 @@ public class mainController {
 
     @FXML
     void ShopClicked(MouseEvent event) {
+    	this.itemField.setVisible(true);
     	String sel = storeList.getSelectionModel().getSelectedItem();
     	int indexOf = storeList.getItems().indexOf(sel);
     	if(indexOf >= 0) {
@@ -114,7 +115,12 @@ public class mainController {
 
     @FXML
     void CartClicked(MouseEvent event) {
-    	
+    	this.itemField1.setVisible(true);
+    	String sel = cartList.getSelectionModel().getSelectedItem();
+    	int indexOf = cart.indexOf(sel);
+    	if(indexOf >= 0) {
+	    	itemDescription1.setText(cartItems.get(indexOf).getDescription());
+    	}
     }
     
     @FXML
@@ -189,6 +195,7 @@ public class mainController {
 
     @FXML
     void Filterclicked(MouseEvent event) {
+    	this.itemField.setVisible(true);
     	ArrayList<CheckBox> checkedBoxes = FilterController.checkFilters(filters);
     }
   //none fxml stuff
