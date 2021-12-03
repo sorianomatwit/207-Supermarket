@@ -1,9 +1,11 @@
 package application;
 
 import dsApp.FilterController;
+import dsApp.ProjectSort;
 import dsApp.Storage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -15,8 +17,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
-public class mainController {
-
+public class mainController extends ProjectSort {
+	
+	String[] f = {"one","two","three","four"};
+	
     @FXML
     private ListView<CheckBox> FilterView;
 
