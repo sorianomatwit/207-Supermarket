@@ -49,8 +49,6 @@ public class ShoppingItem
 		this.price = price;
 		this.category = category;
 		this.description = description;
-		
-		this.pictures.add(picture);
 	}
 	/**
 	 * constructor to make a shopping item without pictures

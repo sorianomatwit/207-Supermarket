@@ -19,6 +19,11 @@ public class FilterController{
 		for(int i = 0; i < Attributes.length;i++) {
 			viewable.add(new CheckBox(Attributes[i]));
 		}
-		
+	}
+	
+	public static void checkFilters(ObservableList<CheckBox> viewable) {
+		for(CheckBox c: viewable) {
+			
+		}
 	}
 }
