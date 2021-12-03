@@ -43,18 +43,20 @@ public class Storage
 
             Sheet sheet = workbook.getSheet(0);
             int r = 0;
+            //loops through each row in the sheet until a row is empty(allows us to expand the excel sheet as much as we want)
             while(!(sheet.getCell(1, r).getType().equals(CellType.EMPTY)))
             {
             	ArrayList<File> pictures = new ArrayList<>();
             	//the way I currently am trying to get multiple images isn't working so for know I will try a single image in an ArrayList
-            	Image image = sheet.getDrawing(r);
-        		pictures.add(image.getImageFile());
-            	/*
-            	while(!(sheet.getCell(1, r).getType().equals(CellType.EMPTY)) &&  sheet.getDrawing(r).getRow() == r)
+            	//Image image = sheet.getDrawing(r);
+        		//pictures.add(image.getImageFile());
+            	int y = r;
+            	while(sheet.getDrawing(y).getRow() == r)
             	{
             		Image image = sheet.getDrawing(r);
             		pictures.add(image.getImageFile());
-            	}*/
+            		y++;
+            	}
 				String name = sheet.getCell(1, r).getContents();
 				Double price = Double.parseDouble(sheet.getCell(2, r).getContents());
 				String category = sheet.getCell(3, r).getContents();
