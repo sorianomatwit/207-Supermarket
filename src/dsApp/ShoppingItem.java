@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class ShoppingItem
 {
 
-	protected ArrayList<File> pictures;
+	//protected ArrayList<File> pictures;
 	protected File picture;
 	protected String name;
 	protected Double price;
@@ -23,17 +23,17 @@ public class ShoppingItem
 	 * @param category category of this shopping item
 	 * @param description description of this shopping item
 	 */
-	public ShoppingItem(ArrayList<File> pictures, String name, Double price, String category, String description)
-	{
-		this.pictures = pictures;
-		this.name = name;
-		this.price = price;
-		this.category = category;
-		this.description = description;
-		
-		this.picture = pictures.get(0);
-	}
-	
+//	public ShoppingItem(ArrayList<File> pictures, String name, Double price, String category, String description)
+//	{
+//		this.pictures = pictures;
+//		this.name = name;
+//		this.price = price;
+//		this.category = category;
+//		this.description = description;
+//		
+//		this.picture = pictures.get(0);
+//	}
+//	
 	/**
 	 * constructor to make a shopping item with one picture
 	 * @param picture File for the image of this shopping item
@@ -59,7 +59,7 @@ public class ShoppingItem
 	 */
 	public ShoppingItem(String name, Double price, String category, String description)
 	{
-		this.pictures = null;
+		//this.pictures = null;
 		this.picture = null;
 		this.name = name;
 		this.price = price;
@@ -81,19 +81,19 @@ public class ShoppingItem
 	 * @param x the number of photo in the list of pictures
 	 * @return the File type of the xth picture
 	 */
-	public File getPicAt(int x)
-	{
-		return pictures.get(x);
-	}
+//	public File getPicAt(int x)
+//	{
+//		return pictures.get(x);
+//	}
 	
 	/**
 	 * 
 	 * @return ArrayList of File type for all the pictures for this shopping item
 	 */
-	public ArrayList<File> getPics()
-	{
-		return pictures;
-	}
+//	public ArrayList<File> getPics()
+//	{
+//		return pictures;
+//	}
 	
 	/**
 	 * 
@@ -136,17 +136,17 @@ public class ShoppingItem
 	 * It loops through the ArrayList pictures and adds the toString() for each of the individual pictures in the list.
 	 * @return string version of all the pictures for this shopping item
 	 */
-	private String picturesToString()
-	{
-		String fin = "";
-		
-		for(File picture: pictures)
-		{
-			fin += "Image" + (pictures.indexOf(picture) + 1) + ": " + picture.toString();
-		}
-		
-		return fin;
-	}
+//	private String picturesToString()
+//	{
+//		String fin = "";
+//		
+//		for(File picture: pictures)
+//		{
+//			fin += "Image" + (pictures.indexOf(picture) + 1) + ": " + picture.toString();
+//		}
+//		
+//		return fin;
+//	}
 	
 	/**
 	 * creates a string containing the name, price, category, description, and pictures of this shopping item
@@ -154,12 +154,14 @@ public class ShoppingItem
 	 */
 	public String toString()
 	{
-		if(pictures.size() > 1)
-		{
-			return "\n" + name + " " + price + " " + category + " " + description + " | " + picturesToString();
-		}
-		else
-			return "\n" + name + " " + price + " " + category + " " + description + " Image: " + picture.toString();//yes i realize that this isn't really needed, but i left it anyway
+//		if(pictures.size() > 1)
+//		{
+//			return "\n" + name + " " + price + " " + category + " " + description + " | " + picturesToString();
+//		}
+//		else
+//			return "\n" + name + " " + price + " " + category + " " + description + " Image: " + picture.toString();//yes i realize that this isn't really needed, but i left it anyway
+		return String.format("%s : %.2f", getName(),getPrice());
+	
 	}
 
 	

@@ -1,6 +1,5 @@
 package application;
 
-
 import java.util.ArrayList;
 
 import dsApp.CartItem;
@@ -11,12 +10,12 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -64,6 +63,15 @@ public class mainController {
     private Polygon lTri;
 
     @FXML
+    private Pane questionBar;
+
+    @FXML
+    private Button questionNoBar;
+
+    @FXML
+    private Button questionyesBar;
+
+    @FXML
     private Polygon rTri;
 
     @FXML
@@ -81,6 +89,7 @@ public class mainController {
     @FXML
     private Label totalPriceView;
 
+
     @FXML
     void NextImgL(MouseEvent event) {
 
@@ -91,29 +100,88 @@ public class mainController {
 
     }
 
-    @FXML
-    void removeFromCart(MouseEvent event) {
 
+    @FXML
+    void questionHitYes(ActionEvent event) {
+    	String sel = cartList.getSelectionModel().getSelectedItem();
+    	int indexOf = cartList.getItems().indexOf(sel);
+    	if(indexOf >= 0) {
+    		cart.remove(indexOf);
+    	}
+    	cartList.setItems(cart);
     }
 
     @FXML
-    void toCart(MouseEvent event) {
+    void questionHitNo(ActionEvent event) {
+    	String sel = cartList.getSelectionModel().getSelectedItem();
+    	int indexOf = cart.indexOf(sel);
+    	String theItem = "";
+    	boolean erase = false;
+    	for(int i = 0; i < sel.length();i++) {
+    		char c = sel.charAt(i);
+    		if(c == 'x') {
+    			erase = true;
+    		}
+    		if(!erase) {
+    				theItem+=c;
+    			}
+    	}
+    	System.out.println(theItem);
+    	if(indexOf >= 0) {
+    		CartItem newItem = new CartItem(Storage.getItemIndex(theItem),1);
+    		boolean isThere = false;
+    		for(CartItem c: cartItems) {
+    			if(c.equals(newItem)) {
+    				newItem = c;
+    				break;
+    			}
+    		}
+    		cartItems.get(cartItems.indexOf(newItem)).subItem();
+    	}
+    	cartList.setItems(cart);
+    }
+
+    
+    @FXML
+    void removeFromCart(ActionEvent  event) {
+    	String sel = cartList.getSelectionModel().getSelectedItem();
+    	int indexOf = cartList.getItems().indexOf(sel);
+    	if(indexOf >= 0) {
+    		questionBar.setVisible(true);
+    	}
+    }
+
+    @FXML
+    void toCart(ActionEvent  event) {
     	
     	String sel = storeList.getSelectionModel().getSelectedItem();
     	int indexOf = storeList.getItems().indexOf(sel);
-    	CartItem newItem = new CartItem(Storage.getAllShoppingItems().get(indexOf),1);
-    	
-    	if(cartItems.contains(newItem)) {
-    		cartItems.get(cartItems.indexOf(newItem)).addItem();
-    	} else {
-    		cartItems.add(newItem);
+    	if(indexOf >= 0) {
+	    	CartItem newItem = new CartItem(Storage.getItemIndex(sel),1);
+	    	boolean isThere = false;
+	    	for(CartItem c: cartItems) {
+	    		if(c.equals(newItem)) {
+	    			isThere = true;
+	    			newItem = c;
+	    			break;
+	    		}
+	    	}
+	    	if(isThere) {
+	    		cartItems.get(cartItems.indexOf(newItem)).addItem();
+	    	} else {
+	    		cartItems.add(newItem);
+	    	}
+	    	cart.clear();
+	    	for(CartItem g: cartItems) {
+	    		cart.add(g.getName());
+			}
+	    	cartList.setItems(cart);
     	}
-    	System.out.print(cartItems);
-    		
+    	
     }
 
     @FXML
-    void pressSearch(MouseEvent event) {
+    void pressSearch(ActionEvent  event) {
     	storeList.setItems(ProjectSort.searchFunc(itemSearch.getText(),items));
     }
 
@@ -123,7 +191,7 @@ public class mainController {
     }
   //none fxml stuff
   //These store the items and amount of times they're added to cart for the toCart button
-    ArrayList<CartItem> cartItems = new ArrayList<>();
+    ObservableList<CartItem> cartItems = FXCollections.observableArrayList();
     //OL for items in cart
     private ObservableList<String> cart = FXCollections.observableArrayList();
     //OL for filters

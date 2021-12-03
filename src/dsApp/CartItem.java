@@ -20,12 +20,29 @@ public class CartItem extends ShoppingItem{
 	
 	public void addItem() {
 		amtOfitem++;
-		name += String.format(" x%d",amtOfitem);
+	}
+	public void subItem() {
+		amtOfitem--;
 	}
 	
 	@Override
 	public Double getPrice() {
 		price = initialPrice*amtOfitem;
 		return price;
+	}
+	public String getName() {
+		if(amtOfitem > 1) {
+			return name + String.format(" x%d",amtOfitem);
+		}
+		return name;
+	}
+	
+	
+	public boolean equals(CartItem c) {
+		if(this.name.equals(c.getName())) {
+			return true;
+		}
+		return false;
+		
 	}
 }

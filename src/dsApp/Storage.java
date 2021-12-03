@@ -31,10 +31,7 @@ public class Storage
 	{
 	}
 	
-	
-	
-	public static void setup(ObservableList<String> viewable)
-	{
+	public static void initialize() {
 		items_arraylist = FXCollections.observableArrayList();
 		Workbook workbook = null;
 		try {
@@ -67,15 +64,35 @@ public class Storage
             }//if
 
         }//finally
+	}
+	
+	public static void setup(ObservableList<String> viewable)
+	{
+		initialize();
 		for(ShoppingItem g: items_arraylist) {
 			viewable.add(g.getName());
 		}
 	}//setup
 	public static ObservableList<ShoppingItem> getAllShoppingItems() {
+		initialize();
 		return items_arraylist;
 	}
-	public ShoppingItem[] getArray()
+	public static ShoppingItem getItemIndex(String Item) {
+		initialize();
+		//System.out.println(items_arraylist);
+		for(ShoppingItem g: items_arraylist) {
+			if(g.getName().equals(Item)) {
+				//System.out.println(g);
+				return g;
+			}
+		}
+		
+		return null;
+		
+	}
+	public static ShoppingItem[] getArray()
 	{
+		initialize();
 		ShoppingItem[] items = new ShoppingItem[items_arraylist.size()];
 		
 		for(int x = 0;x < items.length; x++)
