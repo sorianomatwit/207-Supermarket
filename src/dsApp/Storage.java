@@ -30,6 +30,7 @@ public class Storage
 	 */
 	public Storage()
 	{
+		initialize();
 	}
 	
 	/**
@@ -76,9 +77,8 @@ public class Storage
 	 * add all names of shopping item to a list of strings
 	 * @param viewable
 	 */
-	public static void setup(ObservableList<String> viewable)
+	public void setup(ObservableList<String> viewable)
 	{
-		initialize();
 		for(ShoppingItem g: items_arraylist) {
 			viewable.add(g.getName());
 		}
@@ -88,7 +88,6 @@ public class Storage
 	 * @return the list of ShoppingItem
 	 */
 	public static ObservableList<ShoppingItem> getAllShoppingItems() {
-		initialize();
 		return items_arraylist;
 	}
 	/**
@@ -96,8 +95,7 @@ public class Storage
 	 * @param Item name of the grocery item
 	 * @return the Shopping item correlation to the name
 	 */
-	public static ShoppingItem getItemFromString(String Item) {
-		initialize();
+	public ShoppingItem getItemFromString(String Item) {
 		//System.out.println(items_arraylist);
 		for(ShoppingItem g: items_arraylist) {
 			if(g.getName().equals(Item)) {
@@ -115,7 +113,6 @@ public class Storage
 	 */
 	public static ShoppingItem[] getArray()
 	{
-		initialize();
 		ShoppingItem[] items = new ShoppingItem[items_arraylist.size()];
 		
 		for(int x = 0;x < items.length; x++)

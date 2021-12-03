@@ -105,14 +105,16 @@ public class mainController {
     void ShopClicked(MouseEvent event) {
     	String sel = storeList.getSelectionModel().getSelectedItem();
     	int indexOf = storeList.getItems().indexOf(sel);
-    	ShoppingItem selI = Storage.getItemFromString(sel);
-    	//itemDescription.setText();
+    	if(indexOf >= 0) {
+	    	ShoppingItem selI = stock.getItemFromString(sel);
+	    	itemDescription.setText(selI.getDescription());
+    	}
     }
     
 
     @FXML
     void CartClicked(MouseEvent event) {
-
+    	
     }
     
     @FXML
@@ -156,7 +158,7 @@ public class mainController {
     	String sel = storeList.getSelectionModel().getSelectedItem();
     	int indexOf = storeList.getItems().indexOf(sel);
     	if(indexOf >= 0) {
-	    	CartItem newItem = new CartItem(Storage.getItemFromString(sel),1);
+	    	CartItem newItem = new CartItem(stock.getItemFromString(sel),1);
 	    	boolean isThere = false;
 	    	for(CartItem c: cartItems) {
 	    		if(c.equals(newItem)) {
@@ -198,6 +200,8 @@ public class mainController {
     private ObservableList<CheckBox> filters = FXCollections.observableArrayList();
     //oL for list
     private ObservableList<String> items = FXCollections.observableArrayList();
+    //storage
+    Storage stock = new Storage();
     //timeline
     Timeline timeline = new Timeline(
     		new KeyFrame(Duration.millis(30), frame -> {
@@ -209,7 +213,7 @@ public class mainController {
     	//listView stuff
     	FilterController.setup(filters);
     	this.FilterView.setItems(filters);
-    	Storage.setup(items);
+    	stock.setup(items);
     	storeList.setItems(items);
     	
     	
