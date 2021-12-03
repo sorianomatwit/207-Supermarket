@@ -1,4 +1,4 @@
-package temp;
+package dsApp;
 
 import jxl.Cell;
 import jxl.CellType;
@@ -25,7 +25,7 @@ public class Storage
 	
 	
 	/**
-	 * Default constructor to setup a storage object using the default file name of our projects .xsl file name
+	 * Default constructor
 	 */
 	public Storage()
 	{
