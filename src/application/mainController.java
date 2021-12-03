@@ -195,6 +195,10 @@ public class mainController {
 
     @FXML
     void Filterclicked(MouseEvent event) {
+    	//fix it to whre now the checkbox check off even if you dont click the box
+    	CheckBox sel = FilterView.getSelectionModel().getSelectedItem();
+    	int indexOf = FilterView.getItems().indexOf(sel);
+    	sel.setSelected(true);
     	this.itemField.setVisible(true);
     	ArrayList<CheckBox> checkedBoxes = FilterController.checkFilters(filters);
     }
