@@ -2,6 +2,8 @@ package application;
 
 import dsApp.FilterController;
 import dsApp.Storage;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,7 +15,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 
 public class mainController {
 
@@ -43,7 +47,10 @@ public class mainController {
 
     @FXML
     private Pane itemField1;
-
+    
+    @FXML
+    private BorderPane imgViewer;
+    
     @FXML
     private TextField itemSearch;
 
@@ -73,10 +80,21 @@ public class mainController {
     private ObservableList<CheckBox> filters = FXCollections.observableArrayList();
     //oL for list
     private ObservableList<String> items = FXCollections.observableArrayList();
+    //timeline
+//    Timeline timeline = new Timeline(
+//    		new KeyFrame(Duration.millis(30), frame -> {
+//    			System.out.println("frame passed");
+//    		})
+//    	);
     public void initialize() {
+    	//listView stuff
     	FilterController.setup(filters);
     	this.FilterView.setItems(filters);
     	Storage.setup(items);
     	storeList.setItems(items);
+    	
+    	
+//    	timeline.setCycleCount(Timeline.INDEFINITE);
+//    	timeline.play();
     }
 }

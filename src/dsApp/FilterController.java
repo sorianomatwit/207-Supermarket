@@ -1,5 +1,7 @@
 package dsApp;
 
+import java.util.ArrayList;
+
 import javafx.collections.ObservableList;
 import javafx.scene.control.CheckBox;
 
@@ -22,8 +24,11 @@ public class FilterController{
 	}
 	
 	public static void checkFilters(ObservableList<CheckBox> viewable) {
+		ArrayList<CheckBox> checkedBoxes = new ArrayList(); 
 		for(CheckBox c: viewable) {
-			
+			if(c.isSelected()) {
+				checkedBoxes.add(c);
+			}
 		}
 	}
 }
