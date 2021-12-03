@@ -48,7 +48,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 
-<VBox prefHeight="562.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.mainController">
+<VBox prefHeight="562.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.mainController">
   <children>
       <TabPane prefHeight="566.0" prefWidth="798.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -69,14 +69,23 @@
                                  </content>
                               </ScrollPane>
                               <Label layoutX="27.0" layoutY="62.0" prefHeight="17.0" prefWidth="66.0" text="Filters" />
+<<<<<<< HEAD
                               <ListView fx:id="FilterView" layoutX="2.0" layoutY="87.0" prefHeight="296.0" prefWidth="96.0" />
+=======
+                              <ListView fx:id="FilterView" layoutX="14.0" layoutY="87.0" onMouseClicked="#Filterclicked" prefHeight="296.0" prefWidth="84.0" />
+>>>>>>> branch 'master' of https://github.com/sorianomatwit/207-Supermarket.git
                               <Button fx:id="searchButton" layoutX="219.0" layoutY="15.0" mnemonicParsing="false" onAction="#pressSearch" prefHeight="25.0" prefWidth="73.0" text="Search" />
                            </children>
                         </Pane>
                         <Pane fx:id="itemField" layoutX="332.0" layoutY="75.0" prefHeight="398.0" prefWidth="446.0">
                            <children>
+<<<<<<< HEAD
                               <Button fx:id="addToCart" layoutX="141.0" layoutY="347.0" mnemonicParsing="false" onAction="#toCart" prefHeight="37.0" prefWidth="164.0" text="Add to Cart" />
                               <BorderPane layoutX="94.0" layoutY="18.0" prefHeight="178.0" prefWidth="259.0">
+=======
+                              <Button fx:id="addToCart" layoutX="141.0" layoutY="347.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="164.0" text="Add to Cart" />
+                              <BorderPane fx:id="imgViewer" layoutX="94.0" layoutY="18.0" prefHeight="178.0" prefWidth="259.0">
+>>>>>>> branch 'master' of https://github.com/sorianomatwit/207-Supermarket.git
                                  <left>
                                     <Rectangle fill="DODGERBLUE" height="153.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="14.0" BorderPane.alignment="CENTER" />
                                  </left>

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import dsApp.FilterController;
 import dsApp.ProjectSort;
 import dsApp.Storage;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,12 +19,18 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 
 public class mainController {
+<<<<<<< HEAD
 	
 	String[] f = {"one","two","three","four"};
 	
+=======
+
+>>>>>>> branch 'master' of https://github.com/sorianomatwit/207-Supermarket.git
     @FXML
     private ListView<CheckBox> FilterView;
 
@@ -49,10 +57,16 @@ public class mainController {
 
     @FXML
     private Pane itemField1;
-
+    
+    @FXML
+    private BorderPane imgViewer;
+    
     @FXML
     private TextField itemSearch;
-
+    
+    @FXML
+    private Button searchButton;
+    
     @FXML
     private Tab shopTab;
 
@@ -64,9 +78,6 @@ public class mainController {
 
     @FXML
     private Label totalPriceView;
-
-    @FXML
-    private Button searchButton;
     
     @FXML
     private Button removeNo;
@@ -127,12 +138,15 @@ public class mainController {
     	storeList.setItems(ProjectSort.searchFunc(itemSearch.getText(),items));
     }
     
-    
-    @FXML
     void NextImgL(MouseEvent event) {
 
     }
 
+    @FXML
+    void Filterclicked(MouseEvent event) {
+    	ArrayList<CheckBox> checkedBoxes = FilterController.checkFilters(filters);
+    }
+    
     @FXML
     void NextImgR(MouseEvent event) {
 
@@ -144,10 +158,22 @@ public class mainController {
     private ObservableList<CheckBox> filters = FXCollections.observableArrayList();
     //oL for list
     private ObservableList<String> items = FXCollections.observableArrayList();
+    //timeline
+    Timeline timeline = new Timeline(
+    		new KeyFrame(Duration.millis(30), frame -> {
+    			//System.out.println("frame passed");
+    		})
+    	);
+    
     public void initialize() {
+    	//listView stuff
     	FilterController.setup(filters);
     	this.FilterView.setItems(filters);
     	Storage.setup(items);
     	storeList.setItems(items);
+    	
+    	
+    	timeline.setCycleCount(Timeline.INDEFINITE);
+    	timeline.play();
     }
 }
