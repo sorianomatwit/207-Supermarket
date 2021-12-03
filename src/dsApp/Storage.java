@@ -46,11 +46,15 @@ public class Storage
             while(!(sheet.getCell(1, r).getType().equals(CellType.EMPTY)))
             {
             	ArrayList<File> pictures = new ArrayList<>();
+            	//the way I currently am trying to get multiple images isn't working so for know I will try a single image in an ArrayList
+            	Image image = sheet.getDrawing(r);
+        		pictures.add(image.getImageFile());
+            	/*
             	while(!(sheet.getCell(1, r).getType().equals(CellType.EMPTY)) &&  sheet.getDrawing(r).getRow() == r)
             	{
             		Image image = sheet.getDrawing(r);
             		pictures.add(image.getImageFile());
-            	}
+            	}*/
 				String name = sheet.getCell(1, r).getContents();
 				Double price = Double.parseDouble(sheet.getCell(2, r).getContents());
 				String category = sheet.getCell(3, r).getContents();
