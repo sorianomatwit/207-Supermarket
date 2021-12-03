@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+
 import dsApp.FilterController;
 import dsApp.ProjectSort;
 import dsApp.Storage;
@@ -17,7 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
-public class mainController extends ProjectSort {
+public class mainController {
 	
 	String[] f = {"one","two","three","four"};
 	
@@ -28,7 +30,7 @@ public class mainController extends ProjectSort {
     private Button addToCart;
 
     @FXML
-    private ListView<?> cartList;
+    private ListView<String> cartList;
 
     @FXML
     private Button cartRemove;
@@ -65,12 +67,64 @@ public class mainController extends ProjectSort {
 
     @FXML
     private Button searchButton;
+    
+    @FXML
+    private Button removeNo;
 
+    @FXML
+    private Button removeYes;
+    
+    @FXML
+    private Label removeLabel;
 
 
     @FXML
+    void btnNo(ActionEvent event) {
+//    	String sel = cartList.getSelectionModel().getSelectedItem();
+//    	cart.set(cartList.getSelectionModel().getSelectedIndex(), cartAmount.get(cartItem.indexOf(sel)-1));
+    }
+
+    @FXML
+    void btnYes(ActionEvent event) {
+    }
+    
+    @FXML
+    void removeFromCart(ActionEvent event) {
+
+    }
+    
+    //These store the items and amount of times they're added to cart for the toCart button
+    ArrayList<Integer> cartAmount = new ArrayList<>();
+    ArrayList<String> cartItem = new ArrayList<>();
+    
+    @FXML
+    void toCart(ActionEvent event) {
+    	
+    	String sel = storeList.getSelectionModel().getSelectedItem();
+    	
+    	if(cartItem.contains(sel)) {
+    		cartAmount.set(cartItem.indexOf(sel), cartAmount.get(cartItem.indexOf(sel)) + 1);
+		}
+    	else {
+    		cartItem.add(sel);
+    		cartAmount.add(1);
+    	}
+    	
+    	int doubles = cartAmount.get(cartItem.indexOf(sel));
+    	
+    	if(cart.contains(sel + " x" + (doubles-1))) {
+    		cart.remove(sel + " x" + (doubles-1));
+    		cart.add(sel + " x" + doubles);
+    	}
+    	else {
+    		cart.add(sel + " x" + doubles);
+    	}
+    	cartList.setItems(cart);	
+    }
+
+    @FXML
     void pressSearch(ActionEvent event) {
-    	storeList.setItems(searchFunc(itemSearch.getText(),items));
+    	storeList.setItems(ProjectSort.searchFunc(itemSearch.getText(),items));
     }
     
     
@@ -84,6 +138,8 @@ public class mainController extends ProjectSort {
 
     }
   //none fxml stuff
+    //OL for items in cart
+    private ObservableList<String> cart = FXCollections.observableArrayList();
     //OL for filters
     private ObservableList<CheckBox> filters = FXCollections.observableArrayList();
     //oL for list
