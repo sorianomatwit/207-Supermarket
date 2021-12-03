@@ -1,6 +1,7 @@
-package dsApp;
+package temp;
 
 import jxl.Cell;
+import jxl.CellType;
 import jxl.Image;
 import jxl.NumberCell;
 import jxl.Sheet;
@@ -41,20 +42,23 @@ public class Storage
             workbook = Workbook.getWorkbook(new File(excelFile_location));
 
             Sheet sheet = workbook.getSheet(0);
-            
-            for(int r = 0; r < 5;r++)
+            int r = 0;
+            while(!(sheet.getCell(1, r).getType().equals(CellType.EMPTY)))
             {
-            	
-            	Image image = sheet.getDrawing(r);
-				File picture = image.getImageFile();
+            	ArrayList<File> pictures = new ArrayList<>();
+            	while(!(sheet.getCell(1, r).getType().equals(CellType.EMPTY)) &&  sheet.getDrawing(r).getRow() == r)
+            	{
+            		Image image = sheet.getDrawing(r);
+            		pictures.add(image.getImageFile());
+            	}
 				String name = sheet.getCell(1, r).getContents();
 				Double price = Double.parseDouble(sheet.getCell(2, r).getContents());
 				String category = sheet.getCell(3, r).getContents();
 				String description = sheet.getCell(4, r).getContents();
             	
-            	items_arraylist.add(new ShoppingItem(picture, name, price, category, description));
-            	
-            }//1st for loop
+            	items_arraylist.add(new ShoppingItem(pictures, name, price, category, description));
+            	r++;
+            }//while loop
         } catch (IOException e) {
             e.printStackTrace();
         } catch (BiffException e) {
@@ -70,7 +74,11 @@ public class Storage
 			viewable.add(g.getName());
 		}
 	}//setup
-
+	
+	/**
+	 * 
+	 * @return array of all the ShoppingItem objects 
+	 */
 	public ShoppingItem[] getArray()
 	{
 		ShoppingItem[] items = new ShoppingItem[items_arraylist.size()];
@@ -83,4 +91,6 @@ public class Storage
 		return items;
 		
 	}
+	
+	
 }//class
