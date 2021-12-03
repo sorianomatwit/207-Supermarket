@@ -48,7 +48,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 
-<VBox prefHeight="562.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.mainController">
+<VBox prefHeight="562.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.mainController">
   <children>
       <TabPane prefHeight="566.0" prefWidth="798.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -56,16 +56,21 @@
                <content>
                   <AnchorPane prefHeight="863.0" prefWidth="1037.0">
                      <children>
-                        <Pane fx:id="storeField" layoutX="8.0" layoutY="75.0" prefHeight="430.0" prefWidth="352.0">
+                        <Pane fx:id="storeField" layoutX="31.0" layoutY="75.0" prefHeight="429.0" prefWidth="312.0">
                            <children>
-                              <TextField fx:id="itemSearch" layoutX="36.0" layoutY="14.0" prefHeight="26.0" prefWidth="226.0" promptText="Search item..." />
-                              <ListView fx:id="storeList" layoutX="137.0" layoutY="49.0" prefHeight="354.0" prefWidth="185.0">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                              </ListView>
+                              <TextField fx:id="itemSearch" layoutX="14.0" layoutY="15.0" prefHeight="26.0" prefWidth="195.0" promptText="Search item..." />
+                              <ScrollPane fx:id="itemList" layoutX="106.0" layoutY="55.0" prefHeight="359.0" prefWidth="188.0">
+                                 <content>
+                                    <ListView fx:id="storeList" prefHeight="354.0" prefWidth="185.0">
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </ListView>
+                                 </content>
+                              </ScrollPane>
                               <Label layoutX="27.0" layoutY="62.0" prefHeight="17.0" prefWidth="66.0" text="Filters" />
-                              <ListView fx:id="FilterView" layoutX="14.0" layoutY="88.0" prefHeight="296.0" prefWidth="113.0" />
+                              <ListView fx:id="FilterView" layoutX="14.0" layoutY="87.0" prefHeight="296.0" prefWidth="84.0" />
+                              <Button fx:id="searchButton" layoutX="219.0" layoutY="15.0" mnemonicParsing="false" onAction="#pressSearch" prefHeight="25.0" prefWidth="73.0" text="Search" />
                            </children>
                         </Pane>
                         <Pane fx:id="itemField" layoutX="332.0" layoutY="75.0" prefHeight="398.0" prefWidth="446.0">

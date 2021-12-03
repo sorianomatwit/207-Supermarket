@@ -1,11 +1,13 @@
 package application;
 
 import dsApp.FilterController;
+import dsApp.ProjectSort;
 import dsApp.Storage;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -19,8 +21,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
-public class mainController {
-
+public class mainController extends ProjectSort {
+	
+	String[] f = {"one","two","three","four"};
+	
     @FXML
     private ListView<CheckBox> FilterView;
 
@@ -66,6 +70,17 @@ public class mainController {
     @FXML
     private Label totalPriceView;
 
+    @FXML
+    private Button searchButton;
+
+
+
+    @FXML
+    void pressSearch(ActionEvent event) {
+    	storeList.setItems(searchFunc(itemSearch.getText(),items));
+    }
+    
+    
     @FXML
     void NextImgL(MouseEvent event) {
 
