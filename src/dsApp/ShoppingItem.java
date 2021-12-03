@@ -7,12 +7,12 @@ import java.util.ArrayList;
 public class ShoppingItem
 {
 
-	private ArrayList<File> pictures;
-	private File picture;
-	private String name;
-	private Double price;
-	private String category;
-	private String description;
+	protected ArrayList<File> pictures;
+	protected File picture;
+	protected String name;
+	protected Double price;
+	protected String category;
+	protected String description;
 	
 	
 	/**

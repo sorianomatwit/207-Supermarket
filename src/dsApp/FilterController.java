@@ -24,13 +24,6 @@ public class FilterController{
 		}
 	}
 	
-	public static void applyFilter(String filter, ObservableList<String> Items) {
-		switch(filter.toLowerCase()) {
-			case Attributes[0]:
-		break;
-		}
-		FXCollections.sort(Items,);
-	}
 	
 	public static ArrayList<CheckBox> checkFilters(ObservableList<CheckBox> viewable) {
 		ArrayList<CheckBox> checkedBoxes = new ArrayList(); 
