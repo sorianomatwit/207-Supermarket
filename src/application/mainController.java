@@ -106,39 +106,24 @@ public class mainController {
     	String sel = cartList.getSelectionModel().getSelectedItem();
     	int indexOf = cartList.getItems().indexOf(sel);
     	if(indexOf >= 0) {
+    		cartItems.remove(indexOf);
     		cart.remove(indexOf);
     	}
+    	
     	cartList.setItems(cart);
+    	questionBar.setVisible(false);
     }
 
     @FXML
     void questionHitNo(ActionEvent event) {
     	String sel = cartList.getSelectionModel().getSelectedItem();
     	int indexOf = cart.indexOf(sel);
-    	String theItem = "";
-    	boolean erase = false;
-    	for(int i = 0; i < sel.length();i++) {
-    		char c = sel.charAt(i);
-    		if(c == 'x') {
-    			erase = true;
-    		}
-    		if(!erase) {
-    				theItem+=c;
-    			}
-    	}
-    	System.out.println(theItem);
     	if(indexOf >= 0) {
-    		CartItem newItem = new CartItem(Storage.getItemIndex(theItem),1);
-    		boolean isThere = false;
-    		for(CartItem c: cartItems) {
-    			if(c.equals(newItem)) {
-    				newItem = c;
-    				break;
-    			}
-    		}
-    		cartItems.get(cartItems.indexOf(newItem)).subItem();
+    		cartItems.get(indexOf).subItem();
+    		cart.set(indexOf, cartItems.get(indexOf).getName());
     	}
     	cartList.setItems(cart);
+    	questionBar.setVisible(false);
     }
 
     

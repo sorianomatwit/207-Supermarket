@@ -32,12 +32,14 @@ public class CartItem extends ShoppingItem{
 	}
 	public String getName() {
 		if(amtOfitem > 1) {
-			return name + String.format(" x%d",amtOfitem);
+			return name + String.format(": %d",amtOfitem);
 		}
 		return name;
 	}
 	
-	
+	public void setAmt(int i) {
+		amtOfitem = 1;
+	}
 	public boolean equals(CartItem c) {
 		if(this.name.equals(c.getName())) {
 			return true;
