@@ -11,7 +11,7 @@ public class FilterController{
 			"Dairy",
 			"Breakfast",
 			"Snacks",
-			"Bakery and Breads"
+			"Breads"
 };
 	public FilterController() {
 		// TODO Auto-generated constructor stub
@@ -23,12 +23,14 @@ public class FilterController{
 		}
 	}
 	
-	public static void checkFilters(ObservableList<CheckBox> viewable) {
+	public static ArrayList<CheckBox> checkFilters(ObservableList<CheckBox> viewable) {
 		ArrayList<CheckBox> checkedBoxes = new ArrayList(); 
 		for(CheckBox c: viewable) {
 			if(c.isSelected()) {
 				checkedBoxes.add(c);
+				
 			}
 		}
+		return checkedBoxes;
 	}
 }

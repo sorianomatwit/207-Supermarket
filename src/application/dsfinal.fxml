@@ -48,7 +48,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 
-<VBox prefHeight="562.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.mainController">
+<VBox prefHeight="562.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.mainController">
   <children>
       <TabPane prefHeight="566.0" prefWidth="798.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -69,7 +69,7 @@
                                  </content>
                               </ScrollPane>
                               <Label layoutX="27.0" layoutY="62.0" prefHeight="17.0" prefWidth="66.0" text="Filters" />
-                              <ListView fx:id="FilterView" layoutX="14.0" layoutY="87.0" prefHeight="296.0" prefWidth="84.0" />
+                              <ListView fx:id="FilterView" layoutX="14.0" layoutY="87.0" onMouseClicked="#Filterclicked" prefHeight="296.0" prefWidth="84.0" />
                               <Button fx:id="searchButton" layoutX="219.0" layoutY="15.0" mnemonicParsing="false" onAction="#pressSearch" prefHeight="25.0" prefWidth="73.0" text="Search" />
                            </children>
                         </Pane>

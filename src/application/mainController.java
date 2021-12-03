@@ -21,10 +21,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
-public class mainController extends ProjectSort {
-	
-	String[] f = {"one","two","three","four"};
-	
+public class mainController {
+
     @FXML
     private ListView<CheckBox> FilterView;
 
@@ -57,7 +55,10 @@ public class mainController extends ProjectSort {
     
     @FXML
     private TextField itemSearch;
-
+    
+    @FXML
+    private Button searchButton;
+    
     @FXML
     private Tab shopTab;
 
@@ -71,24 +72,23 @@ public class mainController extends ProjectSort {
     private Label totalPriceView;
 
     @FXML
-    private Button searchButton;
-
-
-
-    @FXML
-    void pressSearch(ActionEvent event) {
-    	storeList.setItems(searchFunc(itemSearch.getText(),items));
-    }
-    
-    
-    @FXML
     void NextImgL(MouseEvent event) {
 
     }
 
     @FXML
+    void Filterclicked(MouseEvent event) {
+
+    }
+    
+    @FXML
     void NextImgR(MouseEvent event) {
 
+    }
+    
+    @FXML
+    void pressSearch(ActionEvent event) {
+    	 storeList.setItems(ProjectSort.searchFunc(itemSearch.getText(),items));
     }
   //none fxml stuff
     //OL for filters
@@ -96,11 +96,12 @@ public class mainController extends ProjectSort {
     //oL for list
     private ObservableList<String> items = FXCollections.observableArrayList();
     //timeline
-//    Timeline timeline = new Timeline(
-//    		new KeyFrame(Duration.millis(30), frame -> {
-//    			System.out.println("frame passed");
-//    		})
-//    	);
+    Timeline timeline = new Timeline(
+    		new KeyFrame(Duration.millis(30), frame -> {
+    			//System.out.println("frame passed");
+    		})
+    	);
+    
     public void initialize() {
     	//listView stuff
     	FilterController.setup(filters);
@@ -109,7 +110,7 @@ public class mainController extends ProjectSort {
     	storeList.setItems(items);
     	
     	
-//    	timeline.setCycleCount(Timeline.INDEFINITE);
-//    	timeline.play();
+    	timeline.setCycleCount(Timeline.INDEFINITE);
+    	timeline.play();
     }
 }
