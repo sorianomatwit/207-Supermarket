@@ -114,17 +114,33 @@ public class ProjectSort {
 		}
 	}
 	
+//	public static ObservableList<String> searchFunc(String a, ObservableList<String> items) {
+//		
+//		ObservableList<String> n = FXCollections.observableArrayList();
+//		
+//		a = a.toLowerCase();
+//		
+//		for(String g : items) {
+//			if(g.toLowerCase().contains(a)) {
+//				n.add(g);
+//			}
+//		}
+//		return n;
+//	}
+	
 	public static ObservableList<String> searchFunc(String a, ObservableList<String> items) {
+		ObservableList<String> criteria = FXCollections.observableArrayList();
 		
-		ObservableList<String> n = FXCollections.observableArrayList();
-		
-		a = a.toLowerCase();
-		
-		for(String g : items) {
-			if(g.toLowerCase().contains(a)) {
-				n.add(g);
+		for(int i = 0; i < a.length();i++) {
+			for(String s: items) {
+				if(s.length() >= a.length()) {
+					if(s.substring(0, i).equals(a.substring(0, i))) {
+						criteria.add(s);
+					}
+				}
 			}
 		}
-		return n;
+		
+		return criteria;
 	}
 }

@@ -186,7 +186,7 @@ public class mainController {
     	}
     	
     	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
-    }
+    } 
 
     @FXML
     void pressSearch(ActionEvent  event) {
@@ -198,7 +198,7 @@ public class mainController {
     	//fix it to whre now the checkbox check off even if you dont click the box
     	CheckBox sel = FilterView.getSelectionModel().getSelectedItem();
     	int indexOf = FilterView.getItems().indexOf(sel);
-    	sel.setSelected(true);
+    	sel.setSelected(!sel.isSelected());
     	this.itemField.setVisible(true);
     	ArrayList<CheckBox> checkedBoxes = FilterController.checkFilters(filters);
     }
