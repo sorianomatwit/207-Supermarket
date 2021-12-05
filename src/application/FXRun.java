@@ -18,14 +18,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 
 public class FXRun extends Application {
-
+	private boolean loop = true;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		System.out.println("running...");
 		try {
-			
-			System.out.println("running...");
 			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("application/dsfinal.fxml"));
-			
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.show();

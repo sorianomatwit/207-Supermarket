@@ -187,7 +187,7 @@
                         </Pane>
                         <Pane fx:id="itemField1" layoutX="338.0" layoutY="96.0" prefHeight="398.0" prefWidth="446.0" visible="false">
                            <children>
-                              <BorderPane layoutX="94.0" layoutY="18.0" prefHeight="178.0" prefWidth="259.0">
+                              <BorderPane fx:id="imgViewer1" layoutX="94.0" layoutY="18.0" prefHeight="178.0" prefWidth="259.0">
                                  <left>
                                     <Rectangle fill="DODGERBLUE" height="153.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="14.0" BorderPane.alignment="CENTER" />
                                  </left>
