@@ -26,6 +26,7 @@ public class FXRun extends Application {
 			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("application/dsfinal.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("207 Supermarket");
 			primaryStage.show();
 			
 		} catch (Exception e) {

@@ -128,17 +128,21 @@ public class mainController {
 
     @FXML
     void clearCart(ActionEvent event) {
-
+    	clearPane.setVisible(true);
     }
 
     @FXML
     void clearNo(ActionEvent event) {
-
+    	clearPane.setVisible(false);
     }
 
     @FXML
     void clearYes(ActionEvent event) {
-
+    	cart.removeAll(cart);
+    	cartItems.removeAll(cartItems);
+    	cartList.setItems(cart);
+    	clearPane.setVisible(false);
+    	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
     }
 
     @FXML
@@ -154,7 +158,7 @@ public class mainController {
     	int indexOf = storeList.getItems().indexOf(sel);
     	if(indexOf >= 0) {
 	    	ShoppingItem selI = stock.getItemFromString(sel);
-	    	itemDescription.setText(selI.getDescription());
+	    	itemDescription.setText(selI.getDescription() + " $" + selI.getPrice());
 
 	    	/*
 	    	 * Setting the imgViewer to the proper image
@@ -176,21 +180,24 @@ public class mainController {
 
     @FXML
     void CartClicked(MouseEvent event) {
-    	this.itemField1.setVisible(true);
-    	String sel = cartList.getSelectionModel().getSelectedItem();
-    	int indexOf = cart.indexOf(sel);
-    	if(indexOf >= 0) {
-	    	itemDescription1.setText(cartItems.get(indexOf).getDescription());
-    	}
-    	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
     	
-    	ImageView imgView = new ImageView();
-    	//both of these work so plan a is to read an image from the excel sheet. Plan B is read a url of where the image is
-    	Image img = cartItems.get(indexOf).getPic();
-    	imgView.setImage(img);
-    	imgView.setFitWidth(imgViewer1.getPrefWidth() - 28);
-    	imgView.setFitHeight(imgViewer1.getPrefHeight() - 25);
-    	imgViewer1.setCenter(imgView);
+    	if(cartList.getSelectionModel().isEmpty() == false) {
+    		this.itemField1.setVisible(true);
+        	String sel = cartList.getSelectionModel().getSelectedItem();
+        	int indexOf = cart.indexOf(sel);
+        	if(indexOf >= 0) {
+    	    	itemDescription1.setText(cartItems.get(indexOf).getDescription() + " $" + cartItems.get(indexOf).getPrice());
+        	}
+        	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
+        	
+        	ImageView imgView = new ImageView();
+        	//both of these work so plan a is to read an image from the excel sheet. Plan B is read a url of where the image is
+        	Image img = cartItems.get(indexOf).getPic();
+        	imgView.setImage(img);
+        	imgView.setFitWidth(imgViewer1.getPrefWidth() - 28);
+        	imgView.setFitHeight(imgViewer1.getPrefHeight() - 25);
+        	imgViewer1.setCenter(imgView);
+    	}
     }
     
     @FXML
