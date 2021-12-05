@@ -151,6 +151,7 @@ public class mainController {
     		ProjectSort.searchFunc(itemSearch.getText(),items);
     	}
     }
+    
     @FXML
     void ShopClicked(MouseEvent event) {
     	this.itemField.setVisible(true);
@@ -158,7 +159,7 @@ public class mainController {
     	int indexOf = storeList.getItems().indexOf(sel);
     	if(indexOf >= 0) {
 	    	ShoppingItem selI = stock.getItemFromString(sel);
-	    	itemDescription.setText(selI.getDescription() + " $" + selI.getPrice());
+	    	itemDescription.setText(String.format("%1s $%.2f",selI.getDescription(), selI.getPrice()));
 
 	    	/*
 	    	 * Setting the imgViewer to the proper image
@@ -186,7 +187,7 @@ public class mainController {
         	String sel = cartList.getSelectionModel().getSelectedItem();
         	int indexOf = cart.indexOf(sel);
         	if(indexOf >= 0) {
-    	    	itemDescription1.setText(cartItems.get(indexOf).getDescription() + " $" + cartItems.get(indexOf).getPrice());
+    	    	itemDescription1.setText(String.format("%1s $%.2f", cartItems.get(indexOf).getDescription(), cartItems.get(indexOf).getPrice()));
         	}
         	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
         	
