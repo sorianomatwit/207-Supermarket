@@ -1,14 +1,18 @@
 package dsApp;
 
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
+
+import javafx.scene.image.Image;
 
 public class ShoppingItem
 {
 
 	//protected ArrayList<File> pictures;
-	protected File picture;
+	protected byte[] picture;
 	protected String name;
 	protected Double price;
 	protected String category;
@@ -42,7 +46,7 @@ public class ShoppingItem
 	 * @param category category of this shopping item
 	 * @param description description of this shopping item
 	 */
-	public ShoppingItem(File picture, String name, Double price, String category, String description)
+	public ShoppingItem(byte[] picture, String name, Double price, String category, String description)
 	{
 		this.picture = picture;
 		this.name = name;
@@ -69,11 +73,13 @@ public class ShoppingItem
 	
 	/**
 	 * 
-	 * @return the File type of 1st picture in the list of pictures
+	 * @return the File of 1st picture in the list of pictures
 	 */
-	public File getPic()
+	public Image getPic()
 	{
-		return picture;
+		InputStream inStream = new ByteArrayInputStream(picture);
+		Image image = new Image(inStream);
+		return image;
 	}
 	
 	/**

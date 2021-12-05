@@ -13,12 +13,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -109,6 +112,21 @@ public class mainController {
     	if(indexOf >= 0) {
 	    	ShoppingItem selI = stock.getItemFromString(sel);
 	    	itemDescription.setText(selI.getDescription());
+
+	    	/*
+	    	 * Setting the imgViewer to the proper image
+	    	 */
+	    	ImageView imgView = new ImageView();
+	    	//both of these work so plan a is to read an image from the excel sheet. Plan B is read a url of where the image is
+	    	Image img = Storage.getArray()[indexOf].getPic();
+	    	imgView.setImage(img);
+	    	imgView.setFitWidth(imgViewer.getPrefWidth() - 28);
+	    	imgView.setFitHeight(imgViewer.getPrefHeight() - 25);
+	    	imgViewer.setCenter(imgView);
+	    	/*
+	    	 * end of setting imgViewer
+	    	 */
+	    	
     	}
     }
     
@@ -226,7 +244,6 @@ public class mainController {
     	this.FilterView.setItems(filters);
     	stock.setup(items);
     	storeList.setItems(items);
-    	
     	
     	timeline.setCycleCount(Timeline.INDEFINITE);
     	timeline.play();
