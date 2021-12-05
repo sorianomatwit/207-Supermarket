@@ -22,8 +22,10 @@ public class FXRun extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try {
+			
+			System.out.println("running...");
 			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("application/dsfinal.fxml"));
-
+			
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.show();

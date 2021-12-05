@@ -82,6 +82,9 @@ public class ShoppingItem
 		return image;
 	}
 	
+	public byte[] getRawPic() {
+		return picture;
+	}
 	/**
 	 * 
 	 * @param x the number of photo in the list of pictures

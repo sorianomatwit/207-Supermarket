@@ -49,7 +49,7 @@ public class Storage
             {
             	
             	Image image = sheet.getDrawing(r);
-				File picture = image.getImageFile();
+				byte[] picture = image.getImageData();
 				String name = sheet.getCell(1, r).getContents();
 				Double price = Double.parseDouble(sheet.getCell(2, r).getContents());
 				String category = sheet.getCell(3, r).getContents();
@@ -90,6 +90,18 @@ public class Storage
 	public static ObservableList<ShoppingItem> getAllShoppingItems() {
 		return items_arraylist;
 	}
+	
+	/**
+	 * 
+	 * @return the list of all ShoppingItems names 
+	 */
+	public ObservableList<String> getAllItemsNames() {
+		ObservableList<String> result = FXCollections.observableArrayList();
+		for(ShoppingItem g: items_arraylist) {
+			result.add(g.getName());
+		}
+		return result;
+	}
 	/**
 	 * 
 	 * @param Item name of the grocery item
@@ -105,7 +117,6 @@ public class Storage
 		}
 		
 		return null;
-		
 	}
 	/**
 	 * 

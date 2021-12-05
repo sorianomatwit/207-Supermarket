@@ -1,6 +1,8 @@
 package application;
 
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import dsApp.CartItem;
 import dsApp.FilterController;
@@ -13,15 +15,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MultipleSelectionModel;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -46,8 +52,25 @@ public class mainController {
     private Tab cartTab;
 
     @FXML
-    private BorderPane imgViewer;
+    private Button clearButtonNo;
 
+    @FXML
+    private Button clearButtonYes;
+
+    @FXML
+    private Button clearCart;
+
+    @FXML
+    private Label clearLabel;
+
+    @FXML
+    private Pane clearPane;
+
+    @FXML
+    private BorderPane imgViewer;
+    
+    @FXML
+    private BorderPane imgViewer1;
     @FXML
     private Label itemDescription;
 
@@ -93,7 +116,6 @@ public class mainController {
     @FXML
     private Label totalPriceView;
 
-
     @FXML
     void NextImgL(MouseEvent event) {
 
@@ -104,6 +126,27 @@ public class mainController {
 
     }
 
+    @FXML
+    void clearCart(ActionEvent event) {
+
+    }
+
+    @FXML
+    void clearNo(ActionEvent event) {
+
+    }
+
+    @FXML
+    void clearYes(ActionEvent event) {
+
+    }
+
+    @FXML
+    void searchKeyPress(KeyEvent event) {
+    	if(event.getCode() == KeyCode.ENTER) {
+    		ProjectSort.searchFunc(itemSearch.getText(),items);
+    	}
+    }
     @FXML
     void ShopClicked(MouseEvent event) {
     	this.itemField.setVisible(true);
@@ -118,7 +161,7 @@ public class mainController {
 	    	 */
 	    	ImageView imgView = new ImageView();
 	    	//both of these work so plan a is to read an image from the excel sheet. Plan B is read a url of where the image is
-	    	Image img = Storage.getArray()[indexOf].getPic();
+	    	Image img = stock.getItemFromString(sel).getPic();
 	    	imgView.setImage(img);
 	    	imgView.setFitWidth(imgViewer.getPrefWidth() - 28);
 	    	imgView.setFitHeight(imgViewer.getPrefHeight() - 25);
@@ -140,6 +183,14 @@ public class mainController {
 	    	itemDescription1.setText(cartItems.get(indexOf).getDescription());
     	}
     	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
+    	
+    	ImageView imgView = new ImageView();
+    	//both of these work so plan a is to read an image from the excel sheet. Plan B is read a url of where the image is
+    	Image img = cartItems.get(indexOf).getPic();
+    	imgView.setImage(img);
+    	imgView.setFitWidth(imgViewer1.getPrefWidth() - 28);
+    	imgView.setFitHeight(imgViewer1.getPrefHeight() - 25);
+    	imgViewer1.setCenter(imgView);
     }
     
     @FXML
@@ -204,7 +255,7 @@ public class mainController {
 	    	for(CartItem g: cartItems) {
 	    		cart.add(g.getName());
 			}
-	    	cartList.setItems(cart);
+	    	
     	}
     	
     	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
@@ -213,17 +264,22 @@ public class mainController {
     @FXML
     void pressSearch(ActionEvent  event) {
     	ProjectSort.searchFunc(itemSearch.getText(),items);
-    	storeList.setItems(items);
     }
 
     @FXML
     void Filterclicked(MouseEvent event) { 
     	//fix it to whre now the checkbox check off even if you dont click the box
     	CheckBox sel = FilterView.getSelectionModel().getSelectedItem();
-    	int indexOf = FilterView.getItems().indexOf(sel);
-    	sel.setSelected(!sel.isSelected());
-    	this.itemField.setVisible(true);
-    	ArrayList<CheckBox> checkedBoxes = FilterController.checkFilters(filters);
+    	if(sel != null) {
+	    	sel.setSelected(!sel.isSelected());
+	    	this.itemField.setVisible(true);
+	    	ArrayList<CheckBox> checkedBoxes = FilterController.allCheckFilters(filters);
+	    	items.setAll(stock.getAllItemsNames());
+	    	for(CheckBox c: checkedBoxes) {
+	    		FilterController.filterItems(c.getText(), items, stock);
+	    	}
+    	}
+    	
     }
   //none fxml stuff
   //These store the items and amount of times they're added to cart for the toCart button
@@ -247,8 +303,12 @@ public class mainController {
     	//listView stuff
     	FilterController.setup(filters);
     	this.FilterView.setItems(filters);
+    	
+    	cartList.setItems(cart);
+    	
     	stock.setup(items);
     	storeList.setItems(items);
+    	
     	
     	timeline.setCycleCount(Timeline.INDEFINITE);
     	timeline.play();
