@@ -121,6 +121,7 @@ public class mainController {
     	if(indexOf >= 0) {
 	    	itemDescription1.setText(cartItems.get(indexOf).getDescription());
     	}
+    	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
     }
     
     @FXML
@@ -134,6 +135,7 @@ public class mainController {
     	
     	cartList.setItems(cart);
     	questionBar.setVisible(false);
+    	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
     }
 
     @FXML
@@ -146,11 +148,13 @@ public class mainController {
     	}
     	cartList.setItems(cart);
     	questionBar.setVisible(false);
+    	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
     }
 
     
     @FXML
     void removeFromCart(ActionEvent  event) {
+    	
     	String sel = cartList.getSelectionModel().getSelectedItem();
     	int indexOf = cartList.getItems().indexOf(sel);
     	if(indexOf >= 0) {
@@ -190,7 +194,8 @@ public class mainController {
 
     @FXML
     void pressSearch(ActionEvent  event) {
-    	storeList.setItems(ProjectSort.searchFunc(itemSearch.getText(),items));
+    	ProjectSort.searchFunc(itemSearch.getText(),items);
+    	storeList.setItems(items);
     }
 
     @FXML

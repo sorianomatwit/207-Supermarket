@@ -1,5 +1,8 @@
 package dsApp;
 
+import java.util.Collections;
+import java.util.Comparator;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -128,19 +131,34 @@ public class ProjectSort {
 //		return n;
 //	}
 	
-	public static ObservableList<String> searchFunc(String a, ObservableList<String> items) {
-		ObservableList<String> criteria = FXCollections.observableArrayList();
-		
-		for(int i = 0; i < a.length();i++) {
-			for(String s: items) {
-				if(s.length() >= a.length()) {
-					if(s.substring(0, i).equals(a.substring(0, i))) {
-						criteria.add(s);
-					}
-				}
+	
+	private static Integer score(String s1, String s2) {
+		String smlStr = "";
+		String bigStr = "";
+		int cnt = 0;
+		if (s1.length() > s2.length()) {
+			smlStr = s2;
+			bigStr = s1;
+		} else {
+			smlStr = s1;
+			bigStr = s2;
+		}
+		for (int i = 0; i < smlStr.length(); i++) {
+			if (smlStr.charAt(i) == bigStr.charAt(i)) {
+				cnt++;
 			}
 		}
-		
-		return criteria;
+		return cnt;
+	}
+	
+	public static void searchFunc(String a, ObservableList<String> items) {
+		Collections.sort(items, new Comparator<String>() {
+			@Override
+			public int compare(String o1, String o2) {
+				// TODO Auto-generated method stub
+				return Integer.valueOf(score(a,o2).compareTo(score(a,o1)));
+			}
+			
+		});
 	}
 }
