@@ -47,15 +47,22 @@ public class Storage
             int r = 0;
             while(!(sheet.getCell(1, r)).getType().equals(CellType.EMPTY))
             {
-            	
-            	Image image = sheet.getDrawing(r);
-				byte[] picture = image.getImageData();
+            	Queue<byte[]> pictures = new Queue();
+            	for(int x = 0; x < sheet.getNumberOfImages(); x++)
+            	{
+            		if(sheet.getDrawing(x).getRow() == r)
+            		{
+            			Image image = sheet.getDrawing(r);
+        				byte[] picture = image.getImageData();
+        				pictures.enqueue(picture);
+            		}
+            	}
 				String name = sheet.getCell(1, r).getContents();
 				Double price = Double.parseDouble(sheet.getCell(2, r).getContents());
 				String category = sheet.getCell(3, r).getContents();
 				String description = sheet.getCell(4, r).getContents();
             	
-            	items_arraylist.add(new ShoppingItem(picture, name, price, category, description));
+            	items_arraylist.add(new ShoppingItem(pictures, name, price, category, description));
             	
             	r++;
             	
@@ -71,7 +78,8 @@ public class Storage
             }//if
 
         }//finally
-	}
+	}//initialize
+	
 	
 	/**
 	 * add all names of shopping item to a list of strings

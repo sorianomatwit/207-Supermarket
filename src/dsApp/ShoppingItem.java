@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
 public class ShoppingItem
 {
 
-	//protected ArrayList<File> pictures;
+	protected Queue<byte[]> picsAll;
 	protected byte[] picture;
 	protected String name;
 	protected Double price;
@@ -21,26 +21,26 @@ public class ShoppingItem
 	
 	/**
 	 * constructor to make a shopping item with multiple pictures
-	 * @param pictures ArrayList of Files of the pictures for this shopping item
+	 * @param pictures Queue of byte[]'s of the pictures for this shopping item
 	 * @param name name of this shopping item
 	 * @param price price of this shopping item
 	 * @param category category of this shopping item
 	 * @param description description of this shopping item
 	 */
-//	public ShoppingItem(ArrayList<File> pictures, String name, Double price, String category, String description)
-//	{
-//		this.pictures = pictures;
-//		this.name = name;
-//		this.price = price;
-//		this.category = category;
-//		this.description = description;
-//		
-//		this.picture = pictures.get(0);
-//	}
-//	
+	public ShoppingItem(Queue<byte[]> pictures, String name, Double price, String category, String description)
+	{
+		this.picsAll = pictures;
+		this.name = name;
+		this.price = price;
+		this.category = category;
+		this.description = description;
+		
+		this.picture = (byte[]) pictures.getHeadContents();
+	}
+	
 	/**
 	 * constructor to make a shopping item with one picture
-	 * @param picture File for the image of this shopping item
+	 * @param picture byte[] for the image of this shopping item
 	 * @param name name of this shopping item
 	 * @param price price of this shopping item
 	 * @param category category of this shopping item
@@ -53,6 +53,9 @@ public class ShoppingItem
 		this.price = price;
 		this.category = category;
 		this.description = description;
+		
+		this.picsAll = new Queue();
+		this.picsAll.enqueue(picture);
 	}
 	/**
 	 * constructor to make a shopping item without pictures
@@ -63,7 +66,7 @@ public class ShoppingItem
 	 */
 	public ShoppingItem(String name, Double price, String category, String description)
 	{
-		//this.pictures = null;
+		this.picsAll = new Queue();
 		this.picture = null;
 		this.name = name;
 		this.price = price;
@@ -72,8 +75,8 @@ public class ShoppingItem
 	}
 	
 	/**
-	 * 
-	 * @return the File of 1st picture in the list of pictures
+	 * method to get the javafx Image version of this ShoppingItem's first picture
+	 * @return the javafx Image of the first picture in the queue
 	 */
 	public Image getPic()
 	{
@@ -82,30 +85,47 @@ public class ShoppingItem
 		return image;
 	}
 	
+	/**
+	 * method to get the first picture in it's raw form as a byte[]
+	 * @return the byte[] version of the first picture
+	 */
 	public byte[] getRawPic() {
 		return picture;
 	}
-	/**
-	 * 
-	 * @param x the number of photo in the list of pictures
-	 * @return the File type of the xth picture
-	 */
-//	public File getPicAt(int x)
-//	{
-//		return pictures.get(x);
-//	}
 	
 	/**
+	 * turns everything from the picsAll Queue into javafx Images and enqueues them to a new Queue which is returned
 	 * 
-	 * @return ArrayList of File type for all the pictures for this shopping item
+	 * How it works:
+	 * create a copy of this ShoppingItem's Queue of byte[] of their pictures
+	 * loop through the copy until it is empty
+	 * 	during which it dequeues the items from thecopy and turns them into a javafx Image
+	 * 	after that the javafx Image is enqueued to the Queue of javafx Image
+	 * the Queue of javafx Image is then returned at the end
+	 * 
+	 * @return Queue of javafx images of this ShoppingItem
 	 */
-//	public ArrayList<File> getPics()
-//	{
-//		return pictures;
-//	}
+	public Queue<Image> getPics()
+	{
+		Queue<byte[]> tempCopy = getRawPics();
+		Queue<Image> images = new Queue();
+		
+		while(!tempCopy.isEmpty())
+		{
+			InputStream inStream = new ByteArrayInputStream((byte[]) tempCopy.dequeue());
+			Image image = new Image(inStream);
+			images.enqueue(image);	
+		}
+		return images;
+	}
+	
+	public Queue<byte[]> getRawPics()
+	{
+		return this.picsAll;
+	}
 	
 	/**
-	 * 
+	 * getter method for the name
 	 * @return name of this shopping item
 	 */
 	public String getName()
@@ -114,7 +134,7 @@ public class ShoppingItem
 	}
 	
 	/**
-	 * 
+	 * getter method for the price
 	 * @return price of this shopping item
 	 */
 	public Double getPrice()
@@ -123,7 +143,7 @@ public class ShoppingItem
 	}
 	
 	/**
-	 * 
+	 * getter method for the category
 	 * @return category of this shopping item
 	 */
 	public String getCategory()
@@ -132,7 +152,7 @@ public class ShoppingItem
 	}
 	
 	/**
-	 * 
+	 * getter method for the description
 	 * @return description of this shopping item
 	 */
 	public String getDescription()
