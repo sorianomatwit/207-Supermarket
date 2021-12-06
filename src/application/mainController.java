@@ -1,8 +1,6 @@
 package application;
 
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 import dsApp.CartItem;
 import dsApp.FilterController;
@@ -13,17 +11,18 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.MultipleSelectionModel;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -36,14 +35,10 @@ import javafx.util.Duration;
 
 public class mainController {
 
-    @FXML
-    private ListView<CheckBox> FilterView;
+
 
     @FXML
     private Button addToCart;
-
-    @FXML
-    private ListView<String> cartList;
 
     @FXML
     private Button cartRemove;
@@ -68,9 +63,10 @@ public class mainController {
 
     @FXML
     private BorderPane imgViewer;
-    
+
     @FXML
     private BorderPane imgViewer1;
+
     @FXML
     private Label itemDescription;
 
@@ -111,10 +107,8 @@ public class mainController {
     private Pane storeField;
 
     @FXML
-    private ListView<String> storeList;
-
-    @FXML
     private Label totalPriceView;
+
 
     @FXML
     void NextImgL(MouseEvent event) {
@@ -125,7 +119,74 @@ public class mainController {
     void NextImgR(MouseEvent event) {
 
     }
+    
+    @FXML
+    private TableColumn<ShoppingItem, String> ShopFoodCol;
 
+    @FXML
+    private TableColumn<ShoppingItem, Double> ShopPriceCol;
+
+    @FXML
+    private TableView<ShoppingItem> ShopTableView;
+    
+    @FXML
+    private TableView<CartItem> CartTableView;
+    
+    @FXML
+    private TableColumn<CartItem, String> CartFoodCol;
+
+    @FXML
+    private TableColumn<CartItem, Double> CartPriceCol;
+    
+    @FXML
+    private TableColumn<CartItem, Integer> CartAmtCol;
+    
+    @FXML
+    private ListView<CheckBox> FilterView;
+    
+    @FXML
+    void ShopTableClicked(MouseEvent event) {
+    	this.itemField.setVisible(true);
+    	ShoppingItem sel = this.ShopTableView.getSelectionModel().getSelectedItem();
+    	if(sel != null) {
+	    	itemDescription.setText(String.format("%1s $%.2f",sel.getDescription(), sel.getPrice()));
+
+	    	/*
+	    	 * Setting the imgViewer to the proper image
+	    	 */
+	    	ImageView imgView = new ImageView();
+	    	//both of these work so plan a is to read an image from the excel sheet. Plan B is read a url of where the image is
+	    	Image img = sel.getPic();
+	    	imgView.setImage(img);
+	    	imgView.setFitWidth(imgViewer.getPrefWidth() - 28);
+	    	imgView.setFitHeight(imgViewer.getPrefHeight() - 25);
+	    	imgViewer.setCenter(imgView);
+	    	/*
+	    	 * end of setting imgViewer
+	    	 */
+    	}
+    }
+    @FXML
+    void CartTableClicked(MouseEvent event) {
+    	
+    	if(CartTableView.getSelectionModel().isEmpty() == false) {
+    		this.itemField1.setVisible(true);
+        	CartItem sel = CartTableView.getSelectionModel().getSelectedItem();
+        	if(sel != null) {
+    	    	itemDescription1.setText(String.format("%1s $%.2f", sel.getDescription(), sel.getPrice()));
+        	}
+        	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
+        	
+        	ImageView imgView = new ImageView();
+        	//both of these work so plan a is to read an image from the excel sheet. Plan B is read a url of where the image is
+        	Image img = sel.getPic();
+        	imgView.setImage(img);
+        	imgView.setFitWidth(imgViewer1.getPrefWidth() - 28);
+        	imgView.setFitHeight(imgViewer1.getPrefHeight() - 25);
+        	imgViewer1.setCenter(imgView);
+    	}
+    }
+    
     @FXML
     void clearCart(ActionEvent event) {
     	clearPane.setVisible(true);
@@ -140,7 +201,6 @@ public class mainController {
     void clearYes(ActionEvent event) {
     	cart.removeAll(cart);
     	cartItems.removeAll(cartItems);
-    	cartList.setItems(cart);
     	clearPane.setVisible(false);
     	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
     }
@@ -151,79 +211,31 @@ public class mainController {
     		ProjectSort.searchFunc(itemSearch.getText(),items);
     	}
     }
-    
-    @FXML
-    void ShopClicked(MouseEvent event) {
-    	this.itemField.setVisible(true);
-    	String sel = storeList.getSelectionModel().getSelectedItem();
-    	int indexOf = storeList.getItems().indexOf(sel);
-    	if(indexOf >= 0) {
-	    	ShoppingItem selI = stock.getItemFromString(sel);
-	    	itemDescription.setText(String.format("%1s $%.2f",selI.getDescription(), selI.getPrice()));
-
-	    	/*
-	    	 * Setting the imgViewer to the proper image
-	    	 */
-	    	ImageView imgView = new ImageView();
-	    	//both of these work so plan a is to read an image from the excel sheet. Plan B is read a url of where the image is
-	    	Image img = stock.getItemFromString(sel).getPic();
-	    	imgView.setImage(img);
-	    	imgView.setFitWidth(imgViewer.getPrefWidth() - 28);
-	    	imgView.setFitHeight(imgViewer.getPrefHeight() - 25);
-	    	imgViewer.setCenter(imgView);
-	    	/*
-	    	 * end of setting imgViewer
-	    	 */
-	    	
-    	}
-    }
-    
-
-    @FXML
-    void CartClicked(MouseEvent event) {
-    	
-    	if(cartList.getSelectionModel().isEmpty() == false) {
-    		this.itemField1.setVisible(true);
-        	String sel = cartList.getSelectionModel().getSelectedItem();
-        	int indexOf = cart.indexOf(sel);
-        	if(indexOf >= 0) {
-    	    	itemDescription1.setText(String.format("%1s $%.2f", cartItems.get(indexOf).getDescription(), cartItems.get(indexOf).getPrice()));
-        	}
-        	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
-        	
-        	ImageView imgView = new ImageView();
-        	//both of these work so plan a is to read an image from the excel sheet. Plan B is read a url of where the image is
-        	Image img = cartItems.get(indexOf).getPic();
-        	imgView.setImage(img);
-        	imgView.setFitWidth(imgViewer1.getPrefWidth() - 28);
-        	imgView.setFitHeight(imgViewer1.getPrefHeight() - 25);
-        	imgViewer1.setCenter(imgView);
-    	}
-    }
+   
     
     @FXML
     void questionHitYes(ActionEvent event) {
-    	String sel = cartList.getSelectionModel().getSelectedItem();
-    	int indexOf = cartList.getItems().indexOf(sel);
+    	CartItem sel = CartTableView.getSelectionModel().getSelectedItem();
+    	int indexOf = CartTableView.getItems().indexOf(sel);
     	if(indexOf >= 0) {
     		cartItems.remove(indexOf);
     		cart.remove(indexOf);
     	}
     	
-    	cartList.setItems(cart);
+    	CartTableView.refresh();
     	questionBar.setVisible(false);
     	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
     }
 
     @FXML
     void questionHitNo(ActionEvent event) {
-    	String sel = cartList.getSelectionModel().getSelectedItem();
+    	CartItem sel = CartTableView.getSelectionModel().getSelectedItem();
     	int indexOf = cart.indexOf(sel);
     	if(indexOf >= 0) {
     		cartItems.get(indexOf).subItem();
     		cart.set(indexOf, cartItems.get(indexOf).getName());
     	}
-    	cartList.setItems(cart);
+    	CartTableView.refresh();
     	questionBar.setVisible(false);
     	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
     }
@@ -232,8 +244,8 @@ public class mainController {
     @FXML
     void removeFromCart(ActionEvent  event) {
     	
-    	String sel = cartList.getSelectionModel().getSelectedItem();
-    	int indexOf = cartList.getItems().indexOf(sel);
+    	CartItem sel = CartTableView.getSelectionModel().getSelectedItem();
+    	int indexOf = CartTableView.getItems().indexOf(sel);
     	if(indexOf >= 0) {
     		questionBar.setVisible(true);
     	}  
@@ -242,10 +254,9 @@ public class mainController {
     @FXML 
     void toCart(ActionEvent  event) {
     	
-    	String sel = storeList.getSelectionModel().getSelectedItem();
-    	int indexOf = storeList.getItems().indexOf(sel);
-    	if(indexOf >= 0) {
-	    	CartItem newItem = new CartItem(stock.getItemFromString(sel),1);
+    	ShoppingItem sel = this.ShopTableView.getSelectionModel().getSelectedItem();
+    	if(sel != null) {
+	    	CartItem newItem = new CartItem(sel,1);
 	    	boolean isThere = false;
 	    	for(CartItem c: cartItems) {
 	    		if(c.equals(newItem)) {
@@ -263,9 +274,8 @@ public class mainController {
 	    	for(CartItem g: cartItems) {
 	    		cart.add(g.getName());
 			}
-	    	
     	}
-    	
+    	CartTableView.refresh();
     	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
     } 
 
@@ -282,10 +292,13 @@ public class mainController {
 	    	sel.setSelected(!sel.isSelected());
 	    	this.itemField.setVisible(true);
 	    	ArrayList<CheckBox> checkedBoxes = FilterController.allCheckFilters(filters);
-	    	items.setAll(stock.getAllItemsNames());
+	    	ArrayList<String> filterList = new ArrayList<>();
+	    	stock.setup(items);
+	    	
 	    	for(CheckBox c: checkedBoxes) {
-	    		FilterController.filterItems(c.getText(), items, stock);
+	    		filterList.add(c.getText());
 	    	}
+	    	FilterController.filterItems(filterList, items);
     	}
     	
     }
@@ -297,7 +310,7 @@ public class mainController {
     //OL for filters
     private ObservableList<CheckBox> filters = FXCollections.observableArrayList();
     //oL for list
-    private ObservableList<String> items = FXCollections.observableArrayList();
+    private ObservableList<ShoppingItem> items = FXCollections.observableArrayList();
     //storage
     Storage stock = new Storage();
     //timeline
@@ -308,17 +321,26 @@ public class mainController {
     	);
     
     public void initialize() {
-    	//listView stuff
+    	
+    	
+    	//filter intial
     	FilterController.setup(filters);
     	this.FilterView.setItems(filters);
     	
-    	cartList.setItems(cart);
+    	//cart initial
+    	CartTableView.setItems(cartItems);
+    	this.CartFoodCol.setCellValueFactory(new PropertyValueFactory<CartItem, String>("name"));
+    	this.CartPriceCol.setCellValueFactory(new PropertyValueFactory<CartItem, Double>("price"));
+    	this.CartAmtCol.setCellValueFactory(new PropertyValueFactory<CartItem, Integer>("amt"));
     	
+    	//shop initial
     	stock.setup(items);
-    	storeList.setItems(items);
-    	
+    	ShopTableView.setItems(items);
+    	this.ShopFoodCol.setCellValueFactory(new PropertyValueFactory<ShoppingItem, String>("name"));
+    	this.ShopPriceCol.setCellValueFactory(new PropertyValueFactory<ShoppingItem, Double>("price"));
     	
     	timeline.setCycleCount(Timeline.INDEFINITE);
     	timeline.play();
     }
 }
+

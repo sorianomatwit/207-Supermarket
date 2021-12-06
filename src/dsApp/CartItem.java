@@ -1,41 +1,40 @@
 package dsApp;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 
 public class CartItem extends ShoppingItem{
 	
-	private int amtOfitem = 1;
+	private SimpleIntegerProperty amt;
 	private Double initialPrice;
 
 	public CartItem(ShoppingItem g,int amt) {
 		super(g.getRawPic(),g.getName(),g.getPrice(),g.getCategory(),g.getDescription());
-		initialPrice = this.price;
-		this.price = price*amt;
-		amtOfitem = amt;
+		initialPrice = this.price.get();
+		this.price.set(price.get()*amt);
+		this.amt = new SimpleIntegerProperty(amt);
 	}
 	/**
 	 * add 1 to item size
 	 */
 	public void addItem() {
-		amtOfitem++;
+		amt.set(getAmt() + 1);
+		System.out.println(amt.get());
 	}
 	/**
 	 * subtract 1 from item size
 	 */
 	public void subItem() {
-		amtOfitem--;
+		amt.subtract(1);
 	}
 	
 	@Override
 	public Double getPrice() {
-		price = initialPrice*amtOfitem;
-		return price;
+		price.set(initialPrice*amt.get());
+		return price.get();
 	}
 	public String getName() {
-		if(amtOfitem > 1) {
-			return name + String.format(": %d",amtOfitem);
-		}
-		return name;
+		return name.get();
 	}
 	
 	/** 
@@ -43,7 +42,11 @@ public class CartItem extends ShoppingItem{
 	 * @param i
 	 */
 	public void setAmt(int i) {
-		amtOfitem = 1;
+		amt.set(i);
+	}
+	
+	public int getAmt() {
+		return amt.get();
 	}
 	/**
 	 * 
@@ -51,7 +54,7 @@ public class CartItem extends ShoppingItem{
 	 * @return true if that are the same type of shopping item
 	 */
 	public boolean equals(ShoppingItem c) {
-		if(this.name.equals(c.getName())) {
+		if(this.name.get().equals(c.getName())) {
 			return true;
 		}
 		return false;

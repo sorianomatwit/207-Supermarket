@@ -18,7 +18,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 
 public class FXRun extends Application {
-	private boolean loop = true;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		System.out.println("running...");

@@ -85,17 +85,18 @@ public class Storage
 	 * add all names of shopping item to a list of strings
 	 * @param viewable
 	 */
-	public void setup(ObservableList<String> viewable)
+	public void setup(ObservableList<ShoppingItem> viewable)
 	{
+		viewable.clear();
 		for(ShoppingItem g: items_arraylist) {
-			viewable.add(g.getName());
+			viewable.add(g);
 		}
 	}//setup
 	/**
 	 * 
 	 * @return the list of ShoppingItem
 	 */
-	public static ObservableList<ShoppingItem> getAllShoppingItems() {
+	public ObservableList<ShoppingItem> getAllShoppingItems() {
 		return items_arraylist;
 	}
 	
@@ -130,7 +131,7 @@ public class Storage
 	 * 
 	 * @return the shoppingItem in array form
 	 */
-	public static ShoppingItem[] getArray()
+	public ShoppingItem[] getArray()
 	{
 		ShoppingItem[] items = new ShoppingItem[items_arraylist.size()];
 		

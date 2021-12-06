@@ -151,13 +151,13 @@ public class ProjectSort {
 		}
 		return result;
 	}
-	public static void searchFunc(String a, ObservableList<String> items) {
-		Collections.sort(items, new Comparator<String>() {
+	public static void searchFunc(String a, ObservableList<ShoppingItem> items) {
+		Collections.sort(items, new Comparator<ShoppingItem>() {
 			@Override
-			public int compare(String o1, String o2) {
+			public int compare(ShoppingItem o1, ShoppingItem o2) {
 				// TODO Auto-generated method stub
-				Integer _o1 = scoreOfSentence(a, o1);
-				Integer _o2 = scoreOfSentence(a, o2);
+				Integer _o1 = scoreOfSentence(a, o1.getName());
+				Integer _o2 = scoreOfSentence(a, o2.getName());
 				return Integer.valueOf(_o2.compareTo(_o1));
 			}
 

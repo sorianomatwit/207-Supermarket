@@ -23,38 +23,39 @@ public class FilterController {
 		}
 	}
 
-	public static void filterItems(String filter, ObservableList<String> items, Storage food) {
-		if (filter.equals(Attributes[0])) {
-			Collections.sort(items, new Comparator<String>() {
-
-				@Override
-				public int compare(String o1, String o2) {
-					Double a = food.getItemFromString(o1).getPrice();
-					Double b = food.getItemFromString(o2).getPrice();
-					return Integer.valueOf(a.compareTo(b));
+	public static void filterItems(ArrayList<String> filters, ObservableList<ShoppingItem> items) {
+		for(String filter: filters) {
+			if (filter.equals(Attributes[0])) {
+				Collections.sort(items, new Comparator<ShoppingItem>() {
+	
+					@Override
+					public int compare(ShoppingItem o1, ShoppingItem o2) {
+						Double a = o1.getPrice();
+						Double b = o2.getPrice();
+						return Integer.valueOf(a.compareTo(b));
+					}
+	
+				});
+			} else if (filter.equals(Attributes[1])) {
+				Collections.sort(items, new Comparator<ShoppingItem>() {
+	
+					@Override
+					public int compare(ShoppingItem o1, ShoppingItem o2) {
+						Double a = o1.getPrice();
+						Double b = o2.getPrice();
+						return Integer.valueOf(b.compareTo(a));
+					}
+	
+				});
+			} else {
+				ObservableList<ShoppingItem> newList = FXCollections.observableArrayList();
+				for (ShoppingItem g : items) {
+					if (g.getCategory().equals(filter)) {
+						newList.add(g);
+					}
 				}
-
-			});
-		} else if (filter.equals(Attributes[1])) {
-			Collections.sort(items, new Comparator<String>() {
-
-				@Override
-				public int compare(String o1, String o2) {
-					Double a = food.getItemFromString(o1).getPrice();
-					Double b = food.getItemFromString(o2).getPrice();
-					return Integer.valueOf(b.compareTo(a));
-				}
-
-			});
-		} else {
-			ObservableList<String> newList = FXCollections.observableArrayList();
-			for (String s : items) {
-				ShoppingItem g = food.getItemFromString(s);
-				if (g.getCategory().equals(filter)) {
-					newList.add(s);
-				}
+				items.setAll(newList);
 			}
-			items.setAll(newList);
 		}
 	}
 

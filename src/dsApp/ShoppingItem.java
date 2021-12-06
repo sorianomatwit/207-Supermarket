@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.Image;
 
 public class ShoppingItem
@@ -13,8 +15,8 @@ public class ShoppingItem
 
 	protected Queue<byte[]> picsAll;
 	protected byte[] picture;
-	protected String name;
-	protected Double price;
+	protected SimpleStringProperty name;
+	protected SimpleDoubleProperty price;
 	protected String category;
 	protected String description;
 	
@@ -30,8 +32,8 @@ public class ShoppingItem
 	public ShoppingItem(Queue<byte[]> pictures, String name, Double price, String category, String description)
 	{
 		this.picsAll = pictures;
-		this.name = name;
-		this.price = price;
+		this.name = new SimpleStringProperty(name);
+		this.price = new SimpleDoubleProperty(price);
 		this.category = category;
 		this.description = description;
 		
@@ -49,8 +51,8 @@ public class ShoppingItem
 	public ShoppingItem(byte[] picture, String name, Double price, String category, String description)
 	{
 		this.picture = picture;
-		this.name = name;
-		this.price = price;
+		this.name = new SimpleStringProperty(name);
+		this.price = new SimpleDoubleProperty(price);
 		this.category = category;
 		this.description = description;
 		
@@ -68,8 +70,8 @@ public class ShoppingItem
 	{
 		this.picsAll = new Queue();
 		this.picture = null;
-		this.name = name;
-		this.price = price;
+		this.name = new SimpleStringProperty(name);
+		this.price = new SimpleDoubleProperty(price);
 		this.category = category;
 		this.description = description;
 	}
@@ -130,7 +132,7 @@ public class ShoppingItem
 	 */
 	public String getName()
 	{
-		return name;
+		return name.get();
 	}
 	
 	/**
@@ -139,7 +141,7 @@ public class ShoppingItem
 	 */
 	public Double getPrice()
 	{
-		return price;
+		return price.get();
 	}
 	
 	/**
