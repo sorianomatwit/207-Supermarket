@@ -19,7 +19,6 @@ public class CartItem extends ShoppingItem{
 	 */
 	public void addItem() {
 		amt.set(getAmt() + 1);
-		System.out.println(amt.get());
 	}
 	/**
 	 * subtract 1 from item size

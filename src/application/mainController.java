@@ -191,6 +191,37 @@ public class mainController {
     private Label checkoutTotal;
     
     @FXML
+    private Label b100Label;
+
+    @FXML
+    private Label b10Label;
+
+    @FXML
+    private Label b1Label;
+
+    @FXML
+    private Label b20Label;
+
+    @FXML
+    private Label b50Label;
+
+    @FXML
+    private Label b5Label;
+
+    @FXML
+    private Label c10Label;
+
+    @FXML
+    private Label c1Label;
+
+    @FXML
+    private Label c25Label;
+
+    @FXML
+    private Label c5Label;
+
+    
+    @FXML
     void checkoutPress(ActionEvent event) {
     	checkoutPane.setVisible(true);
     	itemField1.setVisible(false);
