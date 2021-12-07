@@ -51,7 +51,7 @@
 
 <VBox prefHeight="562.0" prefWidth="798.0" style="-fx-background-color: #708090;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.mainController">
   <children>
-      <TabPane prefHeight="566.0" prefWidth="798.0" style="-fx-background-color: #5b647e;" tabClosingPolicy="UNAVAILABLE">
+      <TabPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="566.0" prefWidth="798.0" style="-fx-background-color: #5b647e;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="shopTab" text="Shop View">
                <content>
@@ -60,11 +60,11 @@
                         <Pane fx:id="storeField" layoutX="6.0" layoutY="75.0" prefHeight="430.0" prefWidth="367.0">
                            <children>
                               <TextField fx:id="itemSearch" layoutX="14.0" layoutY="15.0" onKeyPressed="#searchKeyPress" prefHeight="26.0" prefWidth="195.0" promptText="Search item..." />
-                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="58.0" prefHeight="20.0" prefWidth="97.0" text="Filters" textAlignment="CENTER" textFill="WHITE">
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="34.0" layoutY="58.0" prefHeight="20.0" prefWidth="97.0" text="Filters" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font></Label>
-                              <ListView fx:id="FilterView" layoutX="6.0" layoutY="87.0" onMouseClicked="#Filterclicked" prefHeight="296.0" prefWidth="149.0" style="-fx-background-color: #92accc;" />
+                              <ListView fx:id="FilterView" layoutX="8.0" layoutY="87.0" onMouseClicked="#Filterclicked" prefHeight="324.0" prefWidth="149.0" style="-fx-background-color: #92accc;" />
                               <Button fx:id="searchButton" layoutX="219.0" layoutY="15.0" mnemonicParsing="false" onAction="#pressSearch" prefHeight="25.0" prefWidth="73.0" text="Search" />
                               <TableView fx:id="ShopTableView" layoutX="163.0" layoutY="58.0" onMouseClicked="#ShopTableClicked" prefHeight="354.0" prefWidth="191.0" style="-fx-background-color: #92accc; -fx-background-radius: 5;">
                                 <columns>
@@ -207,7 +207,7 @@
                                     <Polygon fx:id="lTri" fill="#92accc" layoutX="79.0" layoutY="119.0" onMouseClicked="#NextImgL" points="-50.0, 40.0, 50.0, 40.0, 0.0, -60.0" rotate="270.0" scaleY="0.3" stroke="#8da9ff" strokeType="INSIDE" strokeWidth="5.0" translateX="-15.0" />
                                  </children>
                               </Pane>
-                              <Pane fx:id="checkoutPane" layoutX="341.0" layoutY="90.0" prefHeight="356.0" prefWidth="438.0" style="-fx-border-color: #8da9ff; -fx-border-width: 10;" visible="false">
+                              <Pane fx:id="checkoutPane" layoutX="341.0" layoutY="90.0" prefHeight="356.0" prefWidth="438.0" style="-fx-border-color: #8da9ff; -fx-border-width: 10; -fx-border-radius: 40;" visible="false">
                                  <children>
                                     <Label layoutX="73.0" layoutY="25.0" text="Given amount" textFill="WHITE">
                                        <font>
