@@ -191,16 +191,7 @@ public class mainController {
 
     @FXML
     void onkeyCusBar(KeyEvent event) {
-    	ArrayList<Label> moneyLabels = new ArrayList<>();
-    	moneyLabels.add(b100Label);
-    	moneyLabels.add(b20Label);
-    	moneyLabels.add(b10Label);
-    	moneyLabels.add(b5Label);
-    	moneyLabels.add(b1Label);
-    	moneyLabels.add(c25Label);
-    	moneyLabels.add(c10Label);
-    	moneyLabels.add(c5Label);
-    	moneyLabels.add(c1Label);
+    	
     	
     	double custPayOut = 0;
     	boolean ValidResponse = false;
@@ -227,9 +218,10 @@ public class mainController {
 				this.customerChange.setText(String.format("%.2f", change));
 				// bill denomination
 				CheckController biller = new CheckController(change);
-				for(int i = 0; i < moneyLabels.size();i++) {
-					Label l = moneyLabels.get(i);
-					l.setText(String.format("%d",biller.getMoneyDenom().get(i)));
+				System.out.println(biller.getMoneyDenom());
+				for(int i = 0;i < biller.getMoneyDenom().size();i++) {
+					int d = biller.getMoneyDenom().get(i);
+					this.moneyLabels.get(i).setText(String.format("%d", d));;
 				}
 			} else {
 				this.customerChange.setText("Not Enough");
@@ -270,6 +262,7 @@ public class mainController {
 				CartTableView.refresh();
 			}
 			this.removeAmtBar.setText("");
+			this.questionBar.setVisible(false);
 		}
 	}
 
@@ -302,7 +295,7 @@ public class mainController {
 
 	@FXML
 	private ListView<CheckBox> FilterView;
-
+	
 	@FXML
 	void ShopTableClicked(MouseEvent event) {
 		this.itemField.setVisible(true);
@@ -365,7 +358,6 @@ public class mainController {
 
 	@FXML
 	void clearYes(ActionEvent event) {
-		cart.removeAll(cart);
 		cartItems.removeAll(cartItems);
 		clearPane.setVisible(false);
 		this.totalPriceView.setText(String.format("Total Price: $%.2f", CartItem.calcTotal(cartItems)));
@@ -413,10 +405,6 @@ public class mainController {
 			} else {
 				cartItems.add(newItem);
 			}
-			cart.clear();
-			for (CartItem g : cartItems) {
-				cart.add(g.getName());
-			}
 		}
 		CartTableView.refresh();
 		this.totalPriceView.setText(String.format("Total Price: $%.2f", CartItem.calcTotal(cartItems)));
@@ -449,21 +437,18 @@ public class mainController {
 	}
 
 	// none fxml stuff
+	
 	// These store the items and amount of times they're added to cart for the
 	// toCart button
-	ObservableList<CartItem> cartItems = FXCollections.observableArrayList();
-	// OL for items in cart
-	private ObservableList<String> cart = FXCollections.observableArrayList();
+	private ObservableList<CartItem> cartItems = FXCollections.observableArrayList();
 	// OL for filters
 	private ObservableList<CheckBox> filters = FXCollections.observableArrayList();
 	// oL for list
 	private ObservableList<ShoppingItem> items = FXCollections.observableArrayList();
 	// storage
 	Storage stock = new Storage();
-	// timeline
-	Timeline timeline = new Timeline(new KeyFrame(Duration.millis(30), frame -> {
-		// System.out.println("frame passed");
-	}));
+	private ArrayList<Label> moneyLabels = new ArrayList<Label>();
+	
 
 	public void initialize() {
 
@@ -482,8 +467,16 @@ public class mainController {
 		ShopTableView.setItems(items);
 		this.ShopFoodCol.setCellValueFactory(new PropertyValueFactory<ShoppingItem, String>("name"));
 		this.ShopPriceCol.setCellValueFactory(new PropertyValueFactory<ShoppingItem, Double>("price"));
-
-		timeline.setCycleCount(Timeline.INDEFINITE);
-		timeline.play();
+		
+		moneyLabels.add(b100Label);
+		moneyLabels.add(b50Label);
+		moneyLabels.add(b20Label);
+		moneyLabels.add(b10Label);
+		moneyLabels.add(b5Label);
+		moneyLabels.add(b1Label);
+		moneyLabels.add(c25Label);
+		moneyLabels.add(c10Label);
+		moneyLabels.add(c5Label);
+		moneyLabels.add(c1Label);
 	}
 }
