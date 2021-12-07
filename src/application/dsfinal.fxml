@@ -275,7 +275,7 @@
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="checkoutTotal" alignment="CENTER" layoutX="169.0" layoutY="106.0" prefHeight="21.0" prefWidth="101.0" text="Total: $" textFill="WHITE">
+                                    <Label fx:id="checkoutTotal" alignment="CENTER" layoutX="111.0" layoutY="106.0" prefHeight="21.0" prefWidth="240.0" text="Total: $" textFill="WHITE">
                                        <font>
                                           <Font size="15.0" />
                                        </font>

@@ -223,11 +223,13 @@ public class mainController {
     	
     	if(CartTableView.getSelectionModel().isEmpty() == false) {
     		this.itemField1.setVisible(true);
+    		checkoutPane.setVisible(false);
         	CartItem sel = CartTableView.getSelectionModel().getSelectedItem();
         	if(sel != null) {
     	    	itemDescription1.setText(String.format("%1s $%.2f", sel.getDescription(), sel.getPrice()));
         	}
         	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
+        	checkoutTotal.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
         	
         	ImageView imgView = new ImageView();
         	//both of these work so plan a is to read an image from the excel sheet. Plan B is read a url of where the image is
@@ -257,6 +259,7 @@ public class mainController {
     	cartItems.removeAll(cartItems);
     	clearPane.setVisible(false);
     	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
+      	checkoutTotal.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
     }
 
     @FXML
@@ -279,6 +282,7 @@ public class mainController {
     	CartTableView.refresh();
     	questionBar.setVisible(false);
     	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
+      	checkoutTotal.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
     }
 
     @FXML
@@ -292,6 +296,7 @@ public class mainController {
     	CartTableView.refresh();
     	questionBar.setVisible(false);
     	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
+      	checkoutTotal.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
     }
 
     
@@ -333,6 +338,7 @@ public class mainController {
     	}
     	CartTableView.refresh();
     	this.totalPriceView.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
+      	checkoutTotal.setText(String.format("Total Price: $%.2f",CartItem.calcTotal(cartItems)));
     } 
 
     @FXML
