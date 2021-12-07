@@ -24,9 +24,11 @@ public class CartItem extends ShoppingItem{
 	 * subtract 1 from item size
 	 */
 	public void subItem() {
-		amt.subtract(1);
+		amt.set(getAmt() - 1);
 	}
-	
+	public void subItemAmt(int i) {
+		amt.set(getAmt() - i);
+	}
 	@Override
 	public Double getPrice() {
 		price.set(initialPrice*amt.get());
