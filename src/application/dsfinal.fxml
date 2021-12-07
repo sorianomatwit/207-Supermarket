@@ -192,7 +192,7 @@
                                           <Rectangle fill="#8da9ff" height="14.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="259.0" BorderPane.alignment="CENTER" />
                                        </top>
                                     </BorderPane>
-                                    <Polygon fx:id="rTri" fill="#92accc" layoutX="368.0" layoutY="119.0" onMouseClicked="#NextImgR" points="-50.0, 40.0, 50.0, 40.0, 0.0, -60.0" rotate="90.0" scaleY="0.3" stroke="#8da9ff" strokeType="INSIDE" strokeWidth="5.0" translateX="15.0" />
+                                    <Polygon fx:id="rTri1" fill="#92accc" layoutX="368.0" layoutY="119.0" onMouseClicked="#NextImgR1" points="-50.0, 40.0, 50.0, 40.0, 0.0, -60.0" rotate="90.0" scaleY="0.3" stroke="#8da9ff" strokeType="INSIDE" strokeWidth="5.0" translateX="15.0" />
                                     <BorderPane layoutX="94.0" layoutY="224.0" prefHeight="88.0" prefWidth="259.0" style="-fx-background-color: #92accc; -fx-border-color: #8da9ff; -fx-border-width: 10;">
                                        <center>
                                           <Label fx:id="itemDescription1" alignment="CENTER" prefHeight="88.0" prefWidth="233.0" textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
@@ -205,7 +205,7 @@
                                           </Label>
                                        </center>
                                     </BorderPane>
-                                    <Polygon fx:id="lTri" fill="#92accc" layoutX="79.0" layoutY="119.0" onMouseClicked="#NextImgL" points="-50.0, 40.0, 50.0, 40.0, 0.0, -60.0" rotate="270.0" scaleY="0.3" stroke="#8da9ff" strokeType="INSIDE" strokeWidth="5.0" translateX="-15.0" />
+                                    <Polygon fx:id="lTri1" fill="#92accc" layoutX="79.0" layoutY="119.0" onMouseClicked="#NextImgL1" points="-50.0, 40.0, 50.0, 40.0, 0.0, -60.0" rotate="270.0" scaleY="0.3" stroke="#8da9ff" strokeType="INSIDE" strokeWidth="5.0" translateX="-15.0" />
                                  </children>
                               </Pane>
                               <Pane fx:id="checkoutPane" layoutX="341.0" layoutY="90.0" prefHeight="356.0" prefWidth="438.0" style="-fx-border-color: #8da9ff; -fx-border-width: 10; -fx-border-radius: 40;" visible="false">

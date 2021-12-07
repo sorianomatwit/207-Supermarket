@@ -139,7 +139,10 @@ public class mainController {
 
 	@FXML
 	private Polygon lTri;
-
+	
+    @FXML
+    private Polygon lTri1;
+    
 	@FXML
 	private Pane ocentPane;
 
@@ -151,7 +154,10 @@ public class mainController {
 
 	@FXML
 	private Polygon rTri;
-
+	
+    @FXML
+    private Polygon rTri1;
+    
 	@FXML
 	private TextField removeAmtBar;
 
@@ -179,16 +185,26 @@ public class mainController {
 	@FXML
 	private Pane twentyPane;
 
-	@FXML
-	void NextImgL(MouseEvent event) {
+    @FXML
+    void NextImgL(MouseEvent event) {
 
-	}
+    }
 
-	@FXML
-	void NextImgR(MouseEvent event) {
+    @FXML
+    void NextImgL1(MouseEvent event) {
 
-	}
+    }
 
+    @FXML
+    void NextImgR(MouseEvent event) {
+
+    }
+
+    @FXML
+    void NextImgR1(MouseEvent event) {
+
+    }
+	
     @FXML
     void onkeyCusBar(KeyEvent event) {
     	
@@ -212,13 +228,13 @@ public class mainController {
 				custPayOut = Double.parseDouble(textin);
 			}
 			double amtDue = CartItem.calcTotal(cartItems);
-			System.out.println(custPayOut);
+			//System.out.println(custPayOut);
 			if(custPayOut >= amtDue) {
 				double change = custPayOut - amtDue;
 				this.customerChange.setText(String.format("%.2f", change));
 				// bill denomination
 				CheckController biller = new CheckController(change);
-				System.out.println(biller.getMoneyDenom());
+				//System.out.println(biller.getMoneyDenom());
 				for(int i = 0;i < biller.getMoneyDenom().size();i++) {
 					int d = biller.getMoneyDenom().get(i);
 					this.moneyLabels.get(i).setText(String.format("%d", d));;
