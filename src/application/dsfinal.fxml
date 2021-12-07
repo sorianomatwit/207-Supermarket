@@ -215,13 +215,13 @@
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="customerPayed" layoutX="68.0" layoutY="56.0" prefHeight="25.0" prefWidth="118.0" promptText="Enter amount..." />
+                                    <TextField fx:id="customerPayed" layoutX="68.0" layoutY="56.0" onKeyPressed="#onkeyCusBar" prefHeight="25.0" prefWidth="118.0" promptText="Enter amount..." />
                                     <Label alignment="CENTER" contentDisplay="CENTER" layoutX="273.0" layoutY="25.0" text="Change" textFill="WHITE">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="customerChange" alignment="CENTER" layoutX="248.0" layoutY="58.0" prefHeight="21.0" prefWidth="101.0" text="put change" textFill="WHITE">
+                                    <Label fx:id="customerChange" alignment="CENTER" layoutX="248.0" layoutY="58.0" prefHeight="21.0" prefWidth="101.0" textFill="WHITE">
                                        <font>
                                           <Font size="15.0" />
                                        </font>

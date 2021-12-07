@@ -4,40 +4,39 @@ import java.util.ArrayList;
 public class CheckController {
 
 	
-	private static ArrayList<Integer> data;
-	public static void main(String[] args) {
-
-
-        
+	private ArrayList<Integer> data;
+	public CheckController() {
 		data = new ArrayList<Integer>();
-        for(int x = 0; x < 10;x++)
+    	for(int x = 0; x < 10;x++)
         {
             data.add(0);
         }
-
-        double sum = 50;
-        data = getChangeK(sum, data);
-
-
-        for(int x = 0; x < data.size();x++)
+    }
+	public CheckController(double sum) {
+		data = new ArrayList<Integer>();
+    	for(int x = 0; x < 10;x++)
         {
-        	
-            System.out.println(data.get(x));
-        } 
-        
+            data.add(0);
+        }
+    	this.calcChange(sum);
     }
 	
-	private int hundredbill = data.get(0);
-	private int fiftybill = data.get(1);
-    private int twentybill = data.get(2);
-    private int tenbill = data.get(3);
-    private int fivebill = data.get(4);
-    private int onebill = data.get(5);
-    private int quartercoin = data.get(6);
-    private int dimecoin = data.get(7);
-    private int nickelcoin = data.get(8);
-    private int pennycoin = data.get(9);
-    
+	private int hundredbill;
+	private int fiftybill;
+    private int twentybill;
+    private int tenbill;
+    private int fivebill;
+    private int onebill;
+    private int quartercoin;
+    private int dimecoin;
+    private int nickelcoin;
+    private int pennycoin;
+    	public ArrayList<Integer> getMoneyDenom() {
+    		return data;
+    	}
+	    public void calcChange(double sum) {
+	        data = getChangeK(sum, data);
+	    }
 		public int getHundredBill()
 		{
 			return hundredbill;
@@ -79,7 +78,7 @@ public class CheckController {
 			return pennycoin;
 		}
 
-    private static ArrayList<Integer> getChangeK(Double sum, ArrayList<Integer> data)
+    private ArrayList<Integer> getChangeK(Double sum, ArrayList<Integer> data)
     {
 
         if(sum < 0.01)

@@ -3,6 +3,7 @@ package application;
 import java.util.ArrayList;
 
 import dsApp.CartItem;
+import dsApp.CheckController;
 import dsApp.FilterController;
 import dsApp.ProjectSort;
 import dsApp.ShoppingItem;
@@ -188,6 +189,55 @@ public class mainController {
 
 	}
 
+    @FXML
+    void onkeyCusBar(KeyEvent event) {
+    	ArrayList<Label> moneyLabels = new ArrayList<>();
+    	moneyLabels.add(b100Label);
+    	moneyLabels.add(b20Label);
+    	moneyLabels.add(b10Label);
+    	moneyLabels.add(b5Label);
+    	moneyLabels.add(b1Label);
+    	moneyLabels.add(c25Label);
+    	moneyLabels.add(c10Label);
+    	moneyLabels.add(c5Label);
+    	moneyLabels.add(c1Label);
+    	
+    	double custPayOut = 0;
+    	boolean ValidResponse = false;
+		if (event.getCode() == KeyCode.ENTER) {
+			String textin = customerPayed.getText();
+			boolean onlyNums = true;
+			for (char c : textin.toCharArray()) {
+				if (!(Character.isDigit(c) || c == '.')) {
+					onlyNums = false;
+					break;
+				}
+			}
+			if (!textin.isEmpty() && onlyNums) {
+				ValidResponse = true;
+			}
+
+			if (ValidResponse) {
+				custPayOut = Double.parseDouble(textin);
+			}
+			double amtDue = CartItem.calcTotal(cartItems);
+			System.out.println(custPayOut);
+			if(custPayOut >= amtDue) {
+				double change = custPayOut - amtDue;
+				this.customerChange.setText(String.format("%.2f", change));
+				// bill denomination
+				CheckController biller = new CheckController(change);
+				for(int i = 0; i < moneyLabels.size();i++) {
+					Label l = moneyLabels.get(i);
+					l.setText(String.format("%d",biller.getMoneyDenom().get(i)));
+				}
+			} else {
+				this.customerChange.setText("Not Enough");
+			}
+			customerPayed.setText("");
+		} 
+    }
+    
 	@FXML
 	void onkeyAmtBar(KeyEvent event) {
 		int amtToRemove = 0;
@@ -196,7 +246,7 @@ public class mainController {
 			String textin = removeAmtBar.getText();
 			boolean onlyNums = true;
 			for (char c : textin.toCharArray()) {
-				if (!(Character.getNumericValue(c) >= 0 && Character.getNumericValue(c) <= 9)) {
+				if (!Character.isDigit(c)) {
 					onlyNums = false;
 					break;
 				}
@@ -219,7 +269,7 @@ public class mainController {
 				checkoutTotal.setText(String.format("Total Price: $%.2f", CartItem.calcTotal(cartItems)));
 				CartTableView.refresh();
 			}
-
+			this.removeAmtBar.setText("");
 		}
 	}
 
@@ -326,6 +376,7 @@ public class mainController {
 	void searchKeyPress(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
 			ProjectSort.searchFunc(itemSearch.getText(), items);
+			this.itemSearch.setText("");
 		}
 	}
 
@@ -375,6 +426,7 @@ public class mainController {
 	@FXML
 	void pressSearch(ActionEvent event) {
 		ProjectSort.searchFunc(itemSearch.getText(), items);
+		this.itemSearch.setText("");
 	}
 
 	@FXML
