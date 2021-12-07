@@ -189,7 +189,9 @@ public class mainController {
     
     @FXML
     void clearCart(ActionEvent event) {
-    	clearPane.setVisible(true);
+    	if(!questionBar.isVisible()) {
+        	clearPane.setVisible(true);
+    	}
     }
 
     @FXML
@@ -244,10 +246,12 @@ public class mainController {
     @FXML
     void removeFromCart(ActionEvent  event) {
     	
-    	CartItem sel = CartTableView.getSelectionModel().getSelectedItem();
-    	int indexOf = CartTableView.getItems().indexOf(sel);
-    	if(indexOf >= 0) {
-    		questionBar.setVisible(true);
+    	if(!clearPane.isVisible()) {
+        	CartItem sel = CartTableView.getSelectionModel().getSelectedItem();
+        	int indexOf = CartTableView.getItems().indexOf(sel);
+        	if(indexOf >= 0) {
+        		questionBar.setVisible(true);
+        	}
     	}  
     }
 
