@@ -129,7 +129,7 @@ public class ProjectSort {
 	}
 
 	private static ArrayList<String> sentenceToArray(String sent) {
-		ArrayList<String> result = new ArrayList();
+		ArrayList<String> result = new ArrayList<>();
 		int curIndex = 0;
 		result.add("");
 		for(char c: sent.toCharArray()) {

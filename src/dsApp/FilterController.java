@@ -24,44 +24,48 @@ public class FilterController {
 	}
 
 	public static void filterItems(ArrayList<String> filters, ObservableList<ShoppingItem> items) {
-		for(String filter: filters) {
+		ObservableList<ShoppingItem> newList = FXCollections.observableArrayList();
+		for (int i = 0; i < filters.size(); i++) {
+			String filter = filters.get(i);
 			if (filter.equals(Attributes[0])) {
 				Collections.sort(items, new Comparator<ShoppingItem>() {
-	
+
 					@Override
 					public int compare(ShoppingItem o1, ShoppingItem o2) {
 						Double a = o1.getPrice();
 						Double b = o2.getPrice();
 						return Integer.valueOf(a.compareTo(b));
 					}
-	
 				});
 			} else if (filter.equals(Attributes[1])) {
 				Collections.sort(items, new Comparator<ShoppingItem>() {
-	
 					@Override
 					public int compare(ShoppingItem o1, ShoppingItem o2) {
 						Double a = o1.getPrice();
 						Double b = o2.getPrice();
 						return Integer.valueOf(b.compareTo(a));
 					}
-	
+
 				});
 			} else {
-				ObservableList<ShoppingItem> newList = FXCollections.observableArrayList();
+
 				for (ShoppingItem g : items) {
 					if (g.getCategory().equals(filter)) {
 						newList.add(g);
 					}
 				}
-				items.setAll(newList);
+
+				if (i == filters.size() - 1) {
+					items.setAll(newList);
+				}
+
 			}
+
 		}
 	}
 
-
 	public static ArrayList<CheckBox> allCheckFilters(ObservableList<CheckBox> viewable) {
-		ArrayList<CheckBox> checkedBoxes = new ArrayList();
+		ArrayList<CheckBox> checkedBoxes = new ArrayList<>();
 		for (CheckBox c : viewable) {
 			if (c.isSelected()) {
 				checkedBoxes.add(c);
