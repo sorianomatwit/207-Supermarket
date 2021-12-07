@@ -23,7 +23,7 @@ public class CheckController {
         {
         	
             System.out.println(data.get(x));
-        }
+        } 
         
     }
 	
