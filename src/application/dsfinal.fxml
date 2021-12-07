@@ -37,6 +37,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -49,7 +51,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="562.0" prefWidth="798.0" style="-fx-background-color: #708090;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.mainController">
+<VBox prefHeight="562.0" prefWidth="798.0" style="-fx-background-color: #708090;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.mainController">
   <children>
       <TabPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="566.0" prefWidth="798.0" style="-fx-background-color: #5b647e;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -207,7 +209,7 @@
                                     <Polygon fx:id="lTri" fill="#92accc" layoutX="79.0" layoutY="119.0" onMouseClicked="#NextImgL" points="-50.0, 40.0, 50.0, 40.0, 0.0, -60.0" rotate="270.0" scaleY="0.3" stroke="#8da9ff" strokeType="INSIDE" strokeWidth="5.0" translateX="-15.0" />
                                  </children>
                               </Pane>
-                              <Pane fx:id="checkoutPane" layoutX="341.0" layoutY="90.0" prefHeight="356.0" prefWidth="438.0" style="-fx-border-color: #8da9ff; -fx-border-width: 10; -fx-border-radius: 40;" visible="false">
+                              <Pane fx:id="checkoutPane" layoutX="341.0" layoutY="90.0" prefHeight="356.0" prefWidth="438.0" style="-fx-border-color: #8da9ff; -fx-border-width: 10; -fx-border-radius: 40;">
                                  <children>
                                     <Label layoutX="73.0" layoutY="25.0" text="Given amount" textFill="WHITE">
                                        <font>
@@ -280,16 +282,86 @@
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <Pane fx:id="hundredPane" layoutX="40.0" layoutY="165.0" prefHeight="54.0" prefWidth="57.0" style="-fx-border-color: #8da9ff;" />
-                                    <Pane fx:id="fiftyPane" layoutX="99.0" layoutY="165.0" prefHeight="54.0" prefWidth="57.0" style="-fx-border-color: #8da9ff;" />
-                                    <Pane fx:id="twentyPane" layoutX="159.0" layoutY="165.0" prefHeight="54.0" prefWidth="57.0" style="-fx-border-color: #8da9ff;" />
-                                    <Pane fx:id="tenPane" layoutX="221.0" layoutY="165.0" prefHeight="54.0" prefWidth="57.0" style="-fx-border-color: #8da9ff;" />
-                                    <Pane fx:id="fivePane" layoutX="280.0" layoutY="165.0" prefHeight="54.0" prefWidth="57.0" style="-fx-border-color: #8da9ff;" />
-                                    <Pane fx:id="onePane" layoutX="343.0" layoutY="165.0" prefHeight="54.0" prefWidth="57.0" style="-fx-border-color: #8da9ff;" />
-                                    <Pane fx:id="tfcentPane" layoutX="91.0" layoutY="253.0" prefHeight="54.0" prefWidth="57.0" style="-fx-border-color: #8da9ff;" />
-                                    <Pane fx:id="tcentPane" layoutX="159.0" layoutY="253.0" prefHeight="54.0" prefWidth="57.0" style="-fx-border-color: #8da9ff;" />
-                                    <Pane fx:id="fcentPane" layoutX="221.0" layoutY="253.0" prefHeight="54.0" prefWidth="57.0" style="-fx-border-color: #8da9ff;" />
-                                    <Pane fx:id="ocentPane" layoutX="287.0" layoutY="253.0" prefHeight="54.0" prefWidth="57.0" style="-fx-border-color: #8da9ff;" />
+                                    <Pane fx:id="hundredPane" layoutX="40.0" layoutY="165.0" prefHeight="54.0" prefWidth="57.0" style="-fx-border-color: #8da9ff;">
+                                       <children>
+                                          <ImageView fitHeight="36.0" fitWidth="86.0" layoutX="-14.0" layoutY="9.0">
+                                             <image>
+                                                <Image url="@../../data/100Dollar.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children></Pane>
+                                    <Pane fx:id="fiftyPane" layoutX="99.0" layoutY="165.0" prefHeight="54.0" prefWidth="57.0" style="-fx-border-color: #8da9ff;">
+                                       <children>
+                                          <ImageView fitHeight="39.0" fitWidth="90.0" layoutX="-16.0" layoutY="8.0">
+                                             <image>
+                                                <Image url="@../../data/50Dollar.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children></Pane>
+                                    <Pane fx:id="twentyPane" layoutX="159.0" layoutY="165.0" prefHeight="54.0" prefWidth="57.0" style="-fx-border-color: #8da9ff;">
+                                       <children>
+                                          <ImageView fitHeight="40.0" fitWidth="98.0" layoutX="-20.0" layoutY="7.0">
+                                             <image>
+                                                <Image url="@../../data/20Dollar.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children></Pane>
+                                    <Pane fx:id="tenPane" layoutX="221.0" layoutY="165.0" prefHeight="54.0" prefWidth="57.0" style="-fx-border-color: #8da9ff;">
+                                       <children>
+                                          <ImageView fitHeight="34.0" fitWidth="80.0" layoutX="-11.0" layoutY="10.0">
+                                             <image>
+                                                <Image url="@../../data/10Dollar.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children></Pane>
+                                    <Pane fx:id="fivePane" layoutX="280.0" layoutY="165.0" prefHeight="54.0" prefWidth="57.0" style="-fx-border-color: #8da9ff;">
+                                       <children>
+                                          <ImageView fitHeight="34.0" fitWidth="84.0" layoutX="-13.0" layoutY="10.0">
+                                             <image>
+                                                <Image url="@../../data/5Dollar.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children></Pane>
+                                    <Pane fx:id="onePane" layoutX="343.0" layoutY="165.0" prefHeight="54.0" prefWidth="57.0" style="-fx-border-color: #8da9ff;">
+                                       <children>
+                                          <ImageView fitHeight="37.0" fitWidth="80.0" layoutX="-11.0" layoutY="9.0">
+                                             <image>
+                                                <Image url="@../../data/1Dollar.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children></Pane>
+                                    <Pane fx:id="tfcentPane" layoutX="91.0" layoutY="253.0" prefHeight="54.0" prefWidth="57.0" style="-fx-border-color: #8da9ff;">
+                                       <children>
+                                          <ImageView fitHeight="54.0" fitWidth="57.0">
+                                             <image>
+                                                <Image url="@../../data/quarter.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children></Pane>
+                                    <Pane fx:id="tcentPane" layoutX="159.0" layoutY="253.0" prefHeight="54.0" prefWidth="57.0" style="-fx-border-color: #8da9ff;">
+                                       <children>
+                                          <ImageView fitHeight="54.0" fitWidth="57.0">
+                                             <image>
+                                                <Image url="@../../data/dime.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children></Pane>
+                                    <Pane fx:id="fcentPane" layoutX="221.0" layoutY="253.0" prefHeight="54.0" prefWidth="57.0" style="-fx-border-color: #8da9ff;">
+                                       <children>
+                                          <ImageView fitHeight="54.0" fitWidth="57.0">
+                                             <image>
+                                                <Image url="@../../data/nickel.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children></Pane>
+                                    <Pane fx:id="ocentPane" layoutX="287.0" layoutY="253.0" prefHeight="54.0" prefWidth="57.0" style="-fx-border-color: #8da9ff;">
+                                       <children>
+                                          <ImageView fitHeight="54.0" fitWidth="57.0">
+                                             <image>
+                                                <Image url="@../../data/penny.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children></Pane>
                                  </children>
                               </Pane>
                            </children>
