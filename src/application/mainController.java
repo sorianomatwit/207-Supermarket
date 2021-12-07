@@ -144,6 +144,58 @@ public class mainController {
     @FXML
     private ListView<CheckBox> FilterView;
     
+    
+    @FXML
+    private Pane tcentPane;
+
+    @FXML
+    private Pane tenPane;
+
+    @FXML
+    private Pane tfcentPane;
+
+    @FXML
+    private Pane twentyPane;
+    
+    @FXML
+    private Pane ocentPane;
+
+    @FXML
+    private Pane onePane;
+    
+    @FXML
+    private Pane fcentPane;
+
+    @FXML
+    private Pane fiftyPane;
+
+    @FXML
+    private Pane fivePane;
+
+    @FXML
+    private Pane hundredPane;
+    
+    @FXML
+    private Label customerChange;
+
+    @FXML
+    private TextField customerPayed;
+    
+    @FXML
+    private Button checkoutButton;
+
+    @FXML
+    private Pane checkoutPane;
+
+    @FXML
+    private Label checkoutTotal;
+    
+    @FXML
+    void checkoutPress(ActionEvent event) {
+    	checkoutPane.setVisible(true);
+    	itemField1.setVisible(false);
+    }
+    
     @FXML
     void ShopTableClicked(MouseEvent event) {
     	this.itemField.setVisible(true);
