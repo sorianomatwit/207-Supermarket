@@ -4,17 +4,28 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author Kevin ngim
+ *
+ */
 public class CheckController {
 
 	private ArrayList<Integer> data;
-
+	/**
+	 * initializze with no sum
+	 */
 	public CheckController() {
 		data = new ArrayList<Integer>();
 		for (int x = 0; x < 10; x++) {
 			data.add(0);
 		}
 	}
-
+	
+	/**
+	 * inititalize with the sum
+	 * @param sum total sum
+	 */
 	public CheckController(double sum) {
 		data = new ArrayList<Integer>();
 		for (int x = 0; x < 10; x++) {
@@ -22,22 +33,38 @@ public class CheckController {
 		}
 		this.calcChange(sum);
 	}
-
+	/**
+	 * 
+	 * @returnget data list
+	 */
 	public ArrayList<Integer> getMoneyDenom() {
 		return data;
 	}
-
+	
+	/**
+	 * calc the change and put it into the data list
+	 * @param sum - the total sum
+	 */
 	public void calcChange(double sum) {
 		data = getChangeK(sum, data);
 	}
-
+	/**
+	 * 
+	 * @param d - double to round
+	 * @return a rounded double
+	 */
 	private double roundTo2(double d) {
 		DecimalFormat df = new DecimalFormat("#.##");
 		df.setRoundingMode(RoundingMode.HALF_UP);
 
 		return Double.parseDouble(df.format(d));
 	}
-
+	/**
+	 * 
+	 * @param sum total sum
+	 * @param data list to return to
+	 * @return new list
+	 */
 	private ArrayList<Integer> getChangeK(Double sum, ArrayList<Integer> data) {
 
 		if (sum < 0.01)

@@ -2,7 +2,11 @@ package dsApp;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
-
+/**
+ * 
+ * @author Manyeuris Soriano
+ *
+ */
 public class CartItem extends ShoppingItem{
 	
 	private SimpleIntegerProperty amt;

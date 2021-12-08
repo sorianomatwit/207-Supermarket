@@ -34,7 +34,9 @@ import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
 
 public class mainController {
-
+/**
+ *  @author Kyle Sterling
+ */
 	@FXML
 	private Button addToCart;
 
@@ -184,7 +186,46 @@ public class mainController {
 
 	@FXML
 	private Pane twentyPane;
+	
+	@FXML
+	private TableColumn<ShoppingItem, String> ShopFoodCol;
 
+	@FXML
+	private TableColumn<ShoppingItem, Double> ShopPriceCol;
+
+	@FXML
+	private TableView<ShoppingItem> ShopTableView;
+
+	@FXML
+	private TableView<CartItem> CartTableView;
+
+	@FXML
+	private TableColumn<CartItem, String> CartFoodCol;
+
+	@FXML
+	private TableColumn<CartItem, Double> CartPriceCol;
+
+	@FXML
+	private TableColumn<CartItem, Integer> CartAmtCol;
+
+	@FXML
+	private ListView<CheckBox> FilterView;
+	
+	// none fxml stuff
+	
+	// These store the items and amount of times they're added to cart for the
+	// toCart button
+	private ObservableList<CartItem> cartItems = FXCollections.observableArrayList();
+	// OL for filters
+	private ObservableList<CheckBox> filters = FXCollections.observableArrayList();
+	// oL for list
+	private ObservableList<ShoppingItem> items = FXCollections.observableArrayList();
+	// storage
+	private Storage stock = new Storage();
+	private ArrayList<Label> moneyLabels = new ArrayList<Label>();
+	//current items selected in the cart and shop
+	private ShoppingItem currentItemShop;
+	private ShoppingItem currentItemCart;
     @FXML
     /**
      *Doesn't work properly right now(currently just goes to next to give it a function)
@@ -348,31 +389,7 @@ public class mainController {
 	void checkoutPress(ActionEvent event) {
 		checkoutPane.setVisible(true);
 		itemField1.setVisible(false);
-	}
-
-	@FXML
-	private TableColumn<ShoppingItem, String> ShopFoodCol;
-
-	@FXML
-	private TableColumn<ShoppingItem, Double> ShopPriceCol;
-
-	@FXML
-	private TableView<ShoppingItem> ShopTableView;
-
-	@FXML
-	private TableView<CartItem> CartTableView;
-
-	@FXML
-	private TableColumn<CartItem, String> CartFoodCol;
-
-	@FXML
-	private TableColumn<CartItem, Double> CartPriceCol;
-
-	@FXML
-	private TableColumn<CartItem, Integer> CartAmtCol;
-
-	@FXML
-	private ListView<CheckBox> FilterView;
+	}	
 	
 	@FXML
 	void ShopTableClicked(MouseEvent event) {
@@ -519,23 +536,6 @@ public class mainController {
 		}
 
 	}
-
-	// none fxml stuff
-	
-	// These store the items and amount of times they're added to cart for the
-	// toCart button
-	private ObservableList<CartItem> cartItems = FXCollections.observableArrayList();
-	// OL for filters
-	private ObservableList<CheckBox> filters = FXCollections.observableArrayList();
-	// oL for list
-	private ObservableList<ShoppingItem> items = FXCollections.observableArrayList();
-	// storage
-	Storage stock = new Storage();
-	private ArrayList<Label> moneyLabels = new ArrayList<Label>();
-	//current items selected in the cart and shop
-	private ShoppingItem currentItemShop;
-	private ShoppingItem currentItemCart;
-	
 
 	public void initialize() {
 
