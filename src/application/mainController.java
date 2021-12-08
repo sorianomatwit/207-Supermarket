@@ -265,6 +265,7 @@ public class mainController {
 
 			if (ValidResponse) {
 				amtToRemove = Integer.parseInt(textin);
+				this.questionBar.setVisible(false);
 			}
 			CartItem sel = CartTableView.getSelectionModel().getSelectedItem();
 			if (sel != null) {
@@ -276,9 +277,10 @@ public class mainController {
 				this.totalPriceView.setText(String.format("Total Price: $%.2f", CartItem.calcTotal(cartItems)));
 				checkoutTotal.setText(String.format("Total Price: $%.2f", CartItem.calcTotal(cartItems)));
 				CartTableView.refresh();
+				
 			}
 			this.removeAmtBar.setText("");
-			this.questionBar.setVisible(false);
+			
 		}
 	}
 
@@ -362,8 +364,10 @@ public class mainController {
 
 	@FXML
 	void clearCart(ActionEvent event) {
-		if (!questionBar.isVisible()) {
-			clearPane.setVisible(true);
+		if(!cartItems.isEmpty()) {
+			if (!questionBar.isVisible()) {
+				clearPane.setVisible(true);
+			}
 		}
 	}
 

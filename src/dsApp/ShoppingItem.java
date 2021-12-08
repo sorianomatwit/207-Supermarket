@@ -84,6 +84,7 @@ public class ShoppingItem
 	{
 		InputStream inStream = new ByteArrayInputStream(picture);
 		Image image = new Image(inStream);
+		
 		return image;
 	}
 	
