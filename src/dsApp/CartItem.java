@@ -9,7 +9,7 @@ public class CartItem extends ShoppingItem{
 	private Double initialPrice;
 
 	public CartItem(ShoppingItem g,int amt) {
-		super(g.getRawPic(),g.getName(),g.getPrice(),g.getCategory(),g.getDescription());
+		super(g.getRawPics(),g.getName(),g.getPrice(),g.getCategory(),g.getDescription());
 		initialPrice = this.price.get();
 		this.price.set(price.get()*amt);
 		this.amt = new SimpleIntegerProperty(amt);

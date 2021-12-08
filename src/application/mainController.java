@@ -186,22 +186,82 @@ public class mainController {
 	private Pane twentyPane;
 
     @FXML
-    void NextImgL(MouseEvent event) {
+    /**
+     *Doesn't work properly right now(currently just goes to next to give it a function)
+     *click to go back to the previous image in queue
+     * @param event
+     */
+    void NextImgL(MouseEvent event) 
+    {
+    	/*
+	     * Setting up imgViewer for the shop
+	     */
+	    ImageView imageView = new ImageView();
+		imageView.setImage(currentItemShop.getNextPic());
+    	imageView.setFitWidth(imgViewer.getPrefWidth() - 28);
+    	imageView.setFitHeight(imgViewer.getPrefHeight() - 25);
+    	imgViewer.setCenter(imageView);
+        //PictureController.setPicShop(currentItemShop.getNextPic());
+    	/*
+	     * end of setting up imgViewer
+	     */
 
     }
 
     @FXML
+    /**
+     * after button click go to the next image in the item's queue/
+     * @param event
+     */
     void NextImgL1(MouseEvent event) {
+    	/*
+	     * Setting up imgViewer for the shop
+	     */
+	    ImageView imageView = new ImageView();
+		imageView.setImage(currentItemCart.getNextPic());
+    	imageView.setFitWidth(imgViewer1.getPrefWidth() - 28);
+    	imageView.setFitHeight(imgViewer1.getPrefHeight() - 25);
+    	imgViewer1.setCenter(imageView);
+        //PictureController.setPicShop(currentItemShop.getNextPic());
+    	/*
+	     * end of setting up imgViewer
+	     */
 
     }
 
     @FXML
-    void NextImgR(MouseEvent event) {
+    void NextImgR(MouseEvent event) 
+    {
+    	/*
+	     * Setting up imgViewer for the shop
+	     */
+	    ImageView imageView = new ImageView();
+		imageView.setImage(currentItemShop.getNextPic());
+    	imageView.setFitWidth(imgViewer.getPrefWidth() - 28);
+    	imageView.setFitHeight(imgViewer.getPrefHeight() - 25);
+    	imgViewer.setCenter(imageView);
+        //PictureController.setPicShop(currentItemShop.getNextPic());
+    	/*
+	     * end of setting up imgViewer
+	     */
 
     }
 
     @FXML
-    void NextImgR1(MouseEvent event) {
+    void NextImgR1(MouseEvent event) 
+    {
+    	/*
+	     * Setting up imgViewer for the shop
+	     */
+	    ImageView imageView = new ImageView();
+		imageView.setImage(currentItemCart.getNextPic());
+    	imageView.setFitWidth(imgViewer1.getPrefWidth() - 28);
+    	imageView.setFitHeight(imgViewer1.getPrefHeight() - 25);
+    	imgViewer1.setCenter(imageView);
+        //PictureController.setPicShop(currentItemShop.getNextPic());
+    	/*
+	     * end of setting up imgViewer
+	     */
 
     }
 	
@@ -322,19 +382,18 @@ public class mainController {
 			itemDescription.setText(String.format("%1s $%.2f", sel.getDescription(), sel.getPrice()));
 
 			/*
-			 * Setting the imgViewer to the proper image
-			 */
-			ImageView imgView = new ImageView();
-			// both of these work so plan a is to read an image from the excel sheet. Plan B
-			// is read a url of where the image is
-			Image img = sel.getPic();
-			imgView.setImage(img);
-			imgView.setFitWidth(imgViewer.getPrefWidth() - 28);
-			imgView.setFitHeight(imgViewer.getPrefHeight() - 25);
-			imgViewer.setCenter(imgView);
-			/*
-			 * end of setting imgViewer
-			 */
+		     * Setting up imgViewer for the shop
+		     */
+		    currentItemShop = sel;
+		    ImageView imageView = new ImageView();
+			imageView.setImage(sel.getPic());
+	    	imageView.setFitWidth(imgViewer.getPrefWidth() - 28);
+	    	imageView.setFitHeight(imgViewer.getPrefHeight() - 25);
+	    	imgViewer.setCenter(imageView);
+	        //PictureController.setPicShop(currentItemShop.getNextPic());
+	    	/*
+		     * end of setting up imgViewer
+		     */
 		}
 	}
 
@@ -351,14 +410,19 @@ public class mainController {
 			this.totalPriceView.setText(String.format("Total Price: $%.2f", CartItem.calcTotal(cartItems)));
 			checkoutTotal.setText(String.format("Total Price: $%.2f", CartItem.calcTotal(cartItems)));
 
-			ImageView imgView = new ImageView();
-			// both of these work so plan a is to read an image from the excel sheet. Plan B
-			// is read a url of where the image is
-			Image img = sel.getPic();
-			imgView.setImage(img);
-			imgView.setFitWidth(imgViewer1.getPrefWidth() - 28);
-			imgView.setFitHeight(imgViewer1.getPrefHeight() - 25);
-			imgViewer1.setCenter(imgView);
+			/*
+    	     * Setting up imgViewer1 for the shop
+    	     */
+    	    currentItemCart = sel;
+    	    ImageView imageView = new ImageView();
+    		imageView.setImage(sel.getPic());
+        	imageView.setFitWidth(imgViewer1.getPrefWidth() - 28);
+        	imageView.setFitHeight(imgViewer1.getPrefHeight() - 25);
+        	imgViewer1.setCenter(imageView);
+        	//PictureController.setPicCart(currentItemCart.getNextPic());
+        	/*
+    	     * end of setting up imgViewer1
+    	     */
 		}
 	}
 
@@ -468,6 +532,9 @@ public class mainController {
 	// storage
 	Storage stock = new Storage();
 	private ArrayList<Label> moneyLabels = new ArrayList<Label>();
+	//current items selected in the cart and shop
+	private ShoppingItem currentItemShop;
+	private ShoppingItem currentItemCart;
 	
 
 	public void initialize() {

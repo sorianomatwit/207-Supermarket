@@ -1,6 +1,6 @@
 package dsApp;
 
-
+//imports
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
@@ -10,6 +10,12 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.Image;
 
+
+/**
+ * an object which acts as a shopping item. It has a name, price, category, description, and even images.
+ * @author Nicholas LoPilato
+ *
+ */
 public class ShoppingItem
 {
 
@@ -37,7 +43,7 @@ public class ShoppingItem
 		this.category = category;
 		this.description = description;
 		
-		this.picture = (byte[]) pictures.getHeadContents();
+		this.picture = pictures.getHeadContents();
 	}
 	
 	/**
@@ -84,7 +90,6 @@ public class ShoppingItem
 	{
 		InputStream inStream = new ByteArrayInputStream(picture);
 		Image image = new Image(inStream);
-		
 		return image;
 	}
 	
@@ -110,12 +115,13 @@ public class ShoppingItem
 	 */
 	public Queue<Image> getPics()
 	{
-		Queue<byte[]> tempCopy = getRawPics();
+		Queue<byte[]> tempCopy = new Queue<byte[]>(getRawPics());
 		Queue<Image> images = new Queue();
 		
 		while(!tempCopy.isEmpty())
 		{
-			InputStream inStream = new ByteArrayInputStream((byte[]) tempCopy.dequeue());
+			byte[] currentImg = tempCopy.dequeue();
+			InputStream inStream = new ByteArrayInputStream(currentImg);
 			Image image = new Image(inStream);
 			images.enqueue(image);	
 		}
@@ -124,7 +130,23 @@ public class ShoppingItem
 	
 	public Queue<byte[]> getRawPics()
 	{
-		return this.picsAll;
+		return picsAll;
+	}
+	
+	/**
+	 * method to get the next image in the queue from this item
+	 * it changes the actual queue of this item as well
+	 * @return javafx Image of the next image in queue
+	 */
+	public Image getNextPic()
+	{
+		Queue<Image> images = getPics();
+		Image img = getPics().dequeue();
+		
+		this.picsAll.enqueue(this.picsAll.dequeue());
+		
+		return img;
+		
 	}
 	
 	/**
