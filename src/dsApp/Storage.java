@@ -35,6 +35,7 @@ public class Storage
 	
 	/**
 	 * gather all info of the shoppingitems form excel
+	 * @author Nicholas LoPilato
 	 */
 	public static void initialize() {
 		items_arraylist = FXCollections.observableArrayList();
@@ -52,7 +53,7 @@ public class Storage
             	{
             		if(sheet.getDrawing(x).getRow() == r)
             		{
-            			Image image = sheet.getDrawing(r);
+            			Image image = sheet.getDrawing(x);
         				byte[] picture = image.getImageData();
         				pictures.enqueue(picture);
             		}

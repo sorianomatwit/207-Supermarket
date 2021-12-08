@@ -1,5 +1,11 @@
 package dsApp;
 
+/**
+ * 
+ * @author Nicholas LoPilato
+ *
+ * @param <T>
+ */
 public class Queue<T> 
 {
 	/*
@@ -8,8 +14,8 @@ public class Queue<T>
 	private class Node<T>
 	{
 		T contents;
-		Node previous;
-		Node next;
+		Node<T> previous;
+		Node<T> next;
 		
 		public Node(T contents)
 		{
@@ -18,22 +24,22 @@ public class Queue<T>
 			next = null;
 		}
 		
-		public Node getPrevious()
+		public Node<T> getPrevious()
 		{
 			return this.previous;
 		}
 		
-		public Node getNext()
+		public Node<T> getNext()
 		{
 			return this.next;
 		}
 		
-		public void setNext(Node next)
+		public void setNext(Node<T> next)
 		{
 			this.next = next;
 		}
 		
-		public void setPrevious(Node previous)
+		public void setPrevious(Node<T> previous)
 		{
 			this.previous = previous;
 		}
@@ -52,8 +58,8 @@ public class Queue<T>
 	 * head is the node at the top of the queue
 	 * tail is the node at the bottom of the queue
 	 */
-	Node head;
-	Node tail;
+	Node<T> head;
+	Node<T> tail;
 	
 	/**
 	 * default constructor to create an empty queue
@@ -70,8 +76,22 @@ public class Queue<T>
 	 */
 	public Queue(T firstToQueue)
 	{
-		head = new Node(firstToQueue);
+		head = new Node<T>(firstToQueue);
 		tail = null;
+	}
+	
+	public Queue(Queue copyOf)
+	{
+		//head = new Node(copyOf.getHead().getContents());
+		head = copyOf.getHead();
+		
+		Node<T> n = head.getNext();
+		while(n != tail && n != null)
+		{
+			enqueue(n.getContents());
+			n = n.getNext();
+		}
+		enqueue((T)copyOf.getTail().getContents());
 	}
 	
 	/**
@@ -80,13 +100,14 @@ public class Queue<T>
 	 */
 	public void enqueue(T contents)
 	{
-		Node n = new Node(contents);
+		Node<T> n = new Node<T>(contents);
 		
 		if(head == null)//head is null which means tail is also null
 		{
 			head = n;
+			n.setNext(null);
 		}
-		else if(tail == null)//tail is null but head isn't/
+		else if(tail == null)//tail is null but head isn't
 		{
 			tail = n;
 			head.setNext(n);
@@ -103,13 +124,22 @@ public class Queue<T>
 	}
 	
 	/**
-	 * takes the head of the queue out of the queue and returns it
+	 * takes the head of the queue out of the queue and returns it's contents
 	 * @return head of queue's contents
 	 */
-	public Object dequeue()
+	public T dequeue()
 	{
-		Object contents = getHead().getContents();
+		if(head == null)
+		{
+			return null;
+		}
+		T contents = getHead().getContents();
 		head = head.getNext();
+		
+		if(head == null)
+		{
+			tail = null;
+		}
 		
 		return contents;
 	}
@@ -118,7 +148,7 @@ public class Queue<T>
 	 * gets the head of the queue
 	 * @return head
 	 */
-	private Node getHead()
+	private Node<T> getHead()
 	{
 		return head;
 	}
@@ -127,7 +157,7 @@ public class Queue<T>
 	 * gets the tail of the queue
 	 * @return tail
 	 */
-	private Node getTail()
+	private Node<T> getTail()
 	{
 		if(tail == null)
 		{
@@ -140,7 +170,7 @@ public class Queue<T>
 	 * gets the contents from the head of the queue
 	 * @return contents of the head
 	 */
-	public Object getHeadContents()
+	public T getHeadContents()
 	{
 		return getHead().getContents();
 	}
@@ -149,7 +179,7 @@ public class Queue<T>
 	 * gets the contents from the tail of the queue
 	 * @return contents of the tail
 	 */
-	public Object getTailContents()
+	public T getTailContents()
 	{
 		return getTail().getContents();
 	}
@@ -173,7 +203,7 @@ public class Queue<T>
 			return null;
 		}
 		
-		Node it = head;
+		Node<T> it = head;
 		while(it.getNext() != null)
 		{
 			System.out.print(it.getContents().toString());
