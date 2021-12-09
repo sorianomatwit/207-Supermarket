@@ -366,11 +366,17 @@ public class mainController {
 
 			if (ValidResponse) {
 				amtToRemove = Integer.parseInt(textin);
-				this.questionBar.setVisible(false);
+				
 			}
 			CartItem sel = CartTableView.getSelectionModel().getSelectedItem();
 			if (sel != null) {
-				sel.subItemAmt(amtToRemove);
+				if(amtToRemove <= sel.getAmt()) {
+					sel.subItemAmt(amtToRemove);
+					this.questionBar.setVisible(false);
+					this.removeAmtBar.setText("");
+				} else {
+					this.removeAmtBar.setText("Not Valid Amount");
+				}
 				if (sel.getAmt() <= 0) {
 					cartItems.remove(sel);
 					this.itemField1.setVisible(false);
@@ -380,7 +386,7 @@ public class mainController {
 				CartTableView.refresh();
 				
 			}
-			this.removeAmtBar.setText("");
+			
 			
 		}
 	}
